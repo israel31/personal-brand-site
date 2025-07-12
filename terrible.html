@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Olivia James Coaching!!!</title>
+
+    <style>
+        /* This is how you used to do CSS... badly. */
+        body {
+            background-color: #B45F6F; /* The Deep Rose as a background... ouch. */
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            color: #2E2E2E;
+            text-align: center;
+        }
+
+        table {
+            background-color: #FFF8F1; /* Cream color for the main content box */
+            border: 10px groove #FADCDC;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        a {
+            color: blue; /* Default blue links */
+            font-weight: bold;
+        }
+        
+        a:hover {
+            color: lime; /* A lovely hover color */
+        }
+        
+        h1 {
+            font-family: "Papyrus", fantasy;
+            font-size: 50px;
+            color: #FADCDC;
+            text-shadow: 3px 3px 5px #000000;
+        }
+
+        h2 {
+            font-family: "Papyrus", fantasy;
+            color: #B45F6F;
+        }
+        
+        .blinking-text {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+        
+        /* For the JS cursor trail */
+        .trail { 
+            position: absolute;
+            height: 6px;
+            width: 6px;
+            border-radius: 3px;
+            background: #FADCDC;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body onload="alert('WELCOME TO MY AWESOME COACHING WEBSITE!!')">
+
+    <br>
+
+    <table width="800" cellpadding="20">
+        <tr>
+            <td>
+                <!-- HEADER -->
+                <h1>Time for your Business to do Better</h1>
+                
+                <!-- Stretched Image -->
+                <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=500&auto=format&fit=crop" width="400" height="250" alt="olivia james photo" border="2">
+
+                <marquee direction="right" scrollamount="5" style="font-size: 20px; color: #B45F6F; font-weight: bold;">
+                  I help businesses grow and increase cashflow.
+                </marquee>
+
+                <br><br>
+                <a href="#">Learn More</a>
+                <br><br>
+                <hr>
+                <br>
+                
+                <!-- ABOUT ME -->
+                <h2>About Me!!</h2>
+                <p style="text-align: left;">I’m Olivia James, a business coach and personal brand strategist. After building a six-figure brand from scratch, I’ve helped 100+ women do the same—with no fluff, no guesswork, and no hustle-for-the-sake-of-hustle. If you’re ready to stop winging it and start building a business that feels aligned, I’ve got you.</p>
+                <br><br>
+                <hr>
+
+                <!-- PROGRAM -->
+                <h2>My Signature Coaching Program -- The Aligned Authority™ Method</h2>
+                <p>A 3-month 1:1 coaching experience where we:</p>
+                - Clarify your niche and unique offer<br>
+                - Build your magnetic message<br>
+                - Create a simple sales system that fits your life
+                <br><br>
+                <b>You’ll leave with the strategy, mindset, and systems to confidently sell online—without burning out.</b>
+                <br><br>
+                <a href="#">*** Apply for Coaching -> ***</a>
+                <br><br>
+                <hr>
+                
+                <!-- LEAD MAGNET -->
+                <div style="background-color: #FADCDC; padding: 10px; border: 2px dashed #B45F6F;">
+                    <h2>Free Resource -- <span class="blinking-text">DOWNLOAD NOW!</span></h2>
+                    <h3>"Magnetic Messaging Cheat Sheet"</h3>
+                    <p>Want to attract the right clients with your content? Grab my free cheat sheet and start showing up with clarity—today.</p>
+                    <a href="#">Download for Free ---></a>
+                </div>
+                <br><br>
+                <hr>
+
+                <!-- TESTIMONIALS -->
+                <h2>Success Stories!</h2>
+                <div style="border: 1px solid black; padding: 10px; text-align: left; margin-bottom: 10px;">
+                    <i>“I tripled my income within 6 months of working with Olivia!”</i> – Mariah, Confidence Coach
+                </div>
+                <div style="border: 1px solid black; padding: 10px; text-align: left; margin-bottom: 10px;">
+                    <i>“Her frameworks gave me clarity I’ve never had before.”</i> – Nia, Copywriter
+                </div>
+                <div style="border: 1px solid black; padding: 10px; text-align: left;">
+                    <i>“It’s the best investment I’ve made in my business.”</i> – Tamara, Career Strategist
+                </div>
+                <br><br>
+                <hr>
+
+                <!-- FINAL CTA -->
+                <h2>Ready to turn your ideas into income?</h2>
+                <p>Book your free 30-minute discovery call and let’s map out your next move.</p>
+                <a href="#">Click Here to Book a Call</a>
+            </td>
+        </tr>
+    </table>
+
+    <br><br>
+    
+    <!-- FOOTER -->
+    <font size="2" color="#FADCDC">
+        Olivia James Coaching | 
+        <a href="#" style="color: #FADCDC;">Instagram</a> | 
+        <a href="#" style="color: #FADCDC;">LinkedIn</a>
+        <p>© 2025 Olivia James Coaching. All rights reserved.</p>
+    </font>
+    
+    <script>
+        // Annoying cursor trail effect from the 90s
+        const trailCount = 20;
+        const trail = [];
+        let cursorX = 0, cursorY = 0;
+
+        for (let i = 0; i < trailCount; i++) {
+            let div = document.createElement('div');
+            div.className = 'trail';
+            document.body.appendChild(div);
+            trail.push(div);
+        }
+
+        document.addEventListener('mousemove', function(e) {
+            cursorX = e.pageX;
+            cursorY = e.pageY;
+        });
+
+        function animateTrail() {
+            let x = cursorX;
+            let y = cursorY;
+            
+            trail.forEach(function(t, index) {
+                const nextTrail = trail[index + 1] || trail[0];
+                t.style.left = x + 'px';
+                t.style.top = y + 'px';
+                
+                x += (nextTrail.offsetLeft - t.offsetLeft) * 0.5;
+                y += (nextTrail.offsetTop - t.offsetTop) * 0.5;
+            });
+            
+            requestAnimationFrame(animateTrail);
+        }
+
+        animateTrail();
+    </script>
+</body>
+</html>
