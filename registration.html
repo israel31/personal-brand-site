@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="reg.css">
 </head>
 <body>
-     <!-- const scriptURL = 'https://script.google.com/macros/s/AKfycby89nujBx1C_gtj81jgMFe7W3dSSkMjkrJnk_8hlPJ_R0kaNDlICliIhzTyYBOklqvy/exec';
-         const paystackSlug = '14f-oox9sl'; -->
-         
     <div class="form-container">
         <img src="jci-logo.png" alt="JCI Logo" class="logo">
         <h2>Membership Registration</h2>
@@ -28,10 +25,55 @@
                 <label for="phone">Phone Number</label>
                 <input type="tel" id="phone" name="phone" required>
             </div>
+
+            <div class="form-group">
+                <label for="faculty">What faculty do you belong to?</label>
+                <!-- Added .select-wrapper div -->
+                <div class="select-wrapper">
+                    <select id="faculty" name="faculty" required>
+                        <option value="" disabled selected>Select your faculty</option>
+                        <option value="Faculty of Arts">Faculty of Arts</option>
+                        <option value="Faculty of Agriculture">Faculty of Agriculture</option>
+                        <option value="Basic Medical Science">Basic Medical Science</option>
+                        <option value="School of Dentistry">School of Dentistry</option>
+                        <option value="Faculty of Education">Faculty of Education</option>
+                        <option value="Faculty of Engineering">Faculty of Engineering</option>
+                        <option value="Faculty of Environmental Science">Faculty of Environmental Science</option>
+                        <option value="Faculty of Law">Faculty of Law</option>
+                        <option value="Faculty of Management Science">Faculty of Management Science</option>
+                        <option value="Faculty of Pharmacy">Faculty of Pharmacy</option>
+                        <option value="Faculty of Physical Science">Faculty of Physical Science</option>
+                        <option value="Faculty of Social Science">Faculty of Social Science</option>
+                        <option value="School of Medical Science">School of Medical Science</option>
+                        <option value="College of Medicine">College of Medicine</option>
+                        <option value="Veterinary Medicine">Veterinary Medicine</option>
+                        <option value="Faculty of Life Science">Faculty of Life Science</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" id="other-faculty-container" style="display: none;">
+                <label for="other_faculty">Please specify your faculty</label>
+                <input type="text" id="other_faculty" name="other_faculty">
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <!-- Added .select-wrapper div -->
+                <div class="select-wrapper">
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled selected>Select your gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                </div>
+            </div>
+
             <button type="submit" id="submit-button" class="btn">Proceed to Payment</button>
         </form>
     </div>
-
     <script src="reg.js"></script>
 </body>
 </html>

@@ -104,3 +104,62 @@ h1, h2 {
     background-color: #a0a0a0;
     cursor: not-allowed;
 }
+
+/* ========================================================= */
+/* --- NEW STYLES FOR CUSTOM DROPDOWN (SELECT) FIELDS --- */
+/* ========================================================= */
+
+/* First, make the <select> element look like the text inputs */
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--dark-gray);
+
+    /* This is the key to hiding the default browser arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Ensure padding doesn't get cut off on some browsers */
+    background-color: var(--white);
+}
+
+/* Style for the placeholder ("Select your faculty") text */
+.form-group select:required:invalid {
+    color: #6c757d; /* A subtle gray for placeholder text */
+}
+
+/* Position the wrapper to be the anchor for our custom arrow */
+.select-wrapper {
+    position: relative;
+}
+
+/* Create the custom dropdown arrow using a pseudo-element */
+.select-wrapper::after {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+
+    /* This creates a triangle shape */
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--primary-blue); /* The color of the arrow */
+    
+    /* IMPORTANT: This makes the arrow "click-through" so it doesn't block the select box */
+    pointer-events: none;
+}
+
+/* Optional: Add a focus style consistent with the text inputs */
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(0, 114, 198, 0.2);
+}
