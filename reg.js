@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Configuration ---
     // Your existing script URL and slug
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwsfmK5_zgrfdD1fAsXrEsCg9aVtnQ-2V52vdLHgFfSQ-2yWUZud6Aat6qmHfnsU8wlGQ/exec';
-    const paystackSlug = '14f-oox9sl';
+    const paystackSlug = '14f-oox9sl_test_1752413454169';
 
     // ==========================================================
     // --- NEW: Logic to show/hide the "Other Faculty" field ---
