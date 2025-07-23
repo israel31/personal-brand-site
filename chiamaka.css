@@ -1,0 +1,534 @@
+/* ------------------- */
+/* --- GLOBAL STYLES --- */
+/* ------------------- */
+:root {
+    --deep-blue: #1B3A57;
+    --soft-gold: #D4AF37;
+    --off-white: #FAFAFA;
+    --text-color: #333;
+    --white: #FFFFFF;
+    --font-primary: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--white);
+    color: var(--text-color);
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 80px 0;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--deep-blue);
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--soft-gold);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* --- CTA Button Styles --- */
+.cta-button {
+    display: inline-block;
+    background-color: var(--soft-gold);
+    color: var(--deep-blue);
+    padding: 12px 28px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.cta-button:hover {
+    background-color: #c5a031;
+    transform: translateY(-2px);
+}
+
+/* ------------------- */
+/* --- HERO SECTION --- */
+/* ------------------- */
+#hero {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(250, 250, 250, 0.9)), 
+                url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="p" width="100" height="100" patternUnits="userSpaceOnUse"%3E%3Ccircle fill="%231B3A57" cx="25" cy="25" r="1.5"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23p)"/%3E%3C/svg%3E');
+    background-size: auto, 300px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 100px 0;
+}
+
+#hero .container {
+    max-width: 800px;
+}
+
+#hero .subheadline {
+    font-size: 1.25rem;
+    margin: 20px 0 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ------------------- */
+/* --- ABOUT SECTION --- */
+/* ------------------- */
+#about {
+    background-color: var(--off-white);
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.about-photo {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--soft-gold);
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h2 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* ------------------- */
+/* --- PROGRAMS SECTION --- */
+/* ------------------- */
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.program-card {
+    background-color: var(--white);
+    border: 1px solid #eee;
+    padding: 30px;
+    border-radius: 8px;
+    border-top: 5px solid var(--soft-gold);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.program-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.program-card .price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--deep-blue);
+}
+
+/* ------------------- */
+/* --- TESTIMONIALS --- */
+/* ------------------- */
+#testimonials {
+    background-color: var(--off-white);
+}
+
+.testimonials-grid {
+    display: grid;
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-left: 5px solid var(--soft-gold);
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.testimonial-card p {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.testimonial-card cite {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--deep-blue);
+}
+
+/* ------------------- */
+/* --- LEAD MAGNET & BOOKING --- */
+/* ------------------- */
+#lead-magnet, #booking {
+    text-align: center;
+}
+#lead-magnet .container, #booking .container {
+    max-width: 700px;
+}
+
+#lead-magnet {
+    background-color: var(--deep-blue);
+    color: var(--white);
+}
+
+#lead-magnet h2, #lead-magnet p {
+    color: var(--white);
+}
+
+#booking .large-cta {
+    padding: 18px 40px;
+    font-size: 1.1rem;
+    margin-top: 20px;
+}
+
+/* ------------------- */
+/* --- FOOTER --- */
+/* ------------------- */
+footer {
+    background-color: var(--deep-blue);
+    color: var(--off-white);
+    text-align: center;
+    padding: 40px 20px;
+}
+
+footer .social-links a, footer .contact-info a {
+    color: var(--white);
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+footer .social-links a:hover, footer .contact-info a:hover {
+    color: var(--soft-gold);
+}
+
+footer .contact-info {
+    margin: 15px 0;
+}
+
+footer .copyright {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+/* ------------------- */
+/* --- MODAL STYLES --- */
+/* ------------------- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-visible {
+    display: flex;
+}
+
+.modal-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(27, 58, 87, 0.7);
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: auto;
+    padding: 40px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    z-index: 1001;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    animation: slide-down 0.5s ease-out;
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--deep-blue);
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--deep-blue);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: var(--font-primary);
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--soft-gold);
+}
+
+#lead-magnet-form .cta-button {
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+
+/* ------------------- */
+/* --- CALENDAR BOOKING UI --- */
+/* ------------------- */
+#calendar-ui {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    margin-top: 40px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Loading Spinner */
+#calendar-loading {
+    text-align: center;
+    padding: 40px 0;
+}
+.spinner {
+    border: 5px solid var(--off-white);
+    border-top: 5px solid var(--soft-gold);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Slots display */
+.date-heading {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--deep-blue);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--off-white);
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+.date-heading:first-child {
+    margin-top: 0;
+}
+
+.slots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.time-slot-btn {
+    padding: 12px;
+    background-color: var(--white);
+    color: var(--deep-blue);
+    border: 2px solid var(--soft-gold);
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+.time-slot-btn:hover {
+    background-color: var(--soft-gold);
+    color: var(--deep-blue);
+}
+
+.time-slot-btn.selected {
+    background-color: var(--deep-blue);
+    color: var(--white);
+    border-color: var(--deep-blue);
+}
+
+/* Booking Form */
+#booking-form-container {
+    max-width: 500px;
+    margin: 40px auto 0;
+    padding: 30px;
+    background-color: var(--off-white);
+    border-radius: 8px;
+}
+#booking-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+
+#booking-form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+#booking-form .form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: var(--font-primary);
+}
+#booking-form-container h3, #booking-confirmation h3 {
+    text-align: center;
+}
+#booking-confirmation {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 8px;
+}
+
+/* ------------------- */
+/* --- TOAST NOTIFICATION STYLES --- */
+/* ------------------- */
+.toast {
+    visibility: hidden; /* Hidden by default */
+    min-width: 250px;
+    background-color: var(--deep-blue);
+    color: var(--white);
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 2000;
+    right: 30px;
+    bottom: 30px;
+    font-size: 17px;
+    opacity: 0;
+    transition: visibility 0s 0.5s, opacity 0.5s, transform 0.5s;
+    transform: translateY(20px);
+}
+
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    transition: visibility 0s, opacity 0.5s, transform 0.5s;
+}
+
+/* ------------------- */
+/* --- RESPONSIVE --- */
+/* ------------------- */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    section { padding: 60px 0; }
+
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-text h2 {
+        text-align: center;
+    }
+
+    .programs-grid {
+        grid-template-columns: 1fr;
+    }
+}

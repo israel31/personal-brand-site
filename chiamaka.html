@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiamaka Adeyemi | Career & Leadership Coach for Women in Tech & Finance</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Link to Stylesheet -->
+    <link rel="stylesheet" href="chiamaka.css">
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header id="hero">
+        <div class="container">
+            <h1>Helping Nigerian Women in Tech & Finance Lead with Confidence</h1>
+            <p class="subheadline">One-on-one coaching and leadership programs to help you rise faster in your career.</p>
+            <a href="#booking" class="cta-button">Book a Free Discovery Call</a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <div class="container about-container">
+                <!-- TO-DO: Replace with Chiamaka's actual photo -->
+                <img src="./amaka.jpg" alt="Professional photo of Chiamaka Adeyemi" class="about-photo">
+                <div class="about-text">
+                    <h2>I'm Chiamaka Adeyemi</h2>
+                    <p>With 10+ years in the corporate world and 7+ years as a leadership coach, I’ve helped dozens of women break barriers and step into leadership roles. I provide practical strategies and mindset shifts—no corporate stiffness, just clear, actionable guidance to help you own your value and accelerate your growth.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PROGRAMS SECTION -->
+        <section id="programs">
+            <div class="container">
+                <h2>Signature Programs</h2>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <h3>Career Clarity Intensive</h3>
+                        <p class="price">₦75,000</p>
+                        <p>A focused 90-minute session to untangle your career path, define your goals, and create an immediate action plan.</p>
+                    </div>
+                    <div class="program-card">
+                        <h3>Leadership Presence Accelerator</h3>
+                        <p class="price">₦120,000</p>
+                        <p>A 4-week program to build your executive presence, communication skills, and strategic influence at work.</p>
+                    </div>
+                    <div class="program-card">
+                        <h3>Private 3-Month Coaching</h3>
+                        <p class="price">₦250,000</p>
+                        <p>An immersive partnership to overcome limiting beliefs, navigate challenges, and achieve a major career milestone.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS SECTION -->
+        <section id="testimonials">
+            <div class="container">
+                <h2>What My Clients Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p>“Chiamaka’s coaching gave me the confidence to ask for — and get — a promotion in less than 6 weeks.”</p>
+                        <cite>— Ifeoma, Product Manager</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>“Her insights on office politics and leadership were a game-changer. I finally feel seen and respected by my senior colleagues.”</p>
+                        <cite>— Tola, Senior Financial Analyst</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEAD MAGNET SECTION -->
+        <section id="lead-magnet">
+            <div class="container">
+                <h2>Get Ahead in Your Career</h2>
+                <p>Download my free guide and learn the 5 common career traps to avoid as a professional woman in Nigeria's tech and finance sectors.</p>
+                <a href="#" class="cta-button" id="open-modal-btn">Get the Free Guide</a>
+            </div>
+        </section>
+
+        <!-- BOOKING SECTION (Updated Structure) -->
+        <section id="booking">
+            <div class="container">
+                <h2>Ready to Elevate Your Career?</h2>
+                <p>Select a date and time below for your complimentary 30-minute discovery call. Let's map out your next move.</p>
+
+                <div id="calendar-ui">
+                    <div id="calendar-loading">
+                        <div class="spinner"></div>
+                        <p>Finding available slots...</p>
+                    </div>
+                    <div id="slots-container"></div>
+                </div>
+
+                <div id="booking-form-container" style="display: none;">
+                    <h3>Confirm Your Booking</h3>
+                    <p>You selected: <strong id="selected-slot-text"></strong></p>
+                    <form id="booking-form">
+                        <input type="hidden" id="selected-slot-iso" name="slot">
+                        <div class="form-group">
+                            <label for="booking-name">Full Name</label>
+                            <input type="text" id="booking-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-email">Email Address</label>
+                            <input type="email" id="booking-email" name="email" required>
+                        </div>
+                        <button type="submit" class="cta-button large-cta">Confirm Booking</button>
+                    </form>
+                </div>
+
+                <div id="booking-confirmation" style="display: none;">
+                    <h3>Thank You!</h3>
+                    <p>Your discovery call has been booked. Please check your email for a calendar invitation.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <!-- TO-DO: Replace '#' with your actual social media links -->
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+            </div>
+            <div class="contact-info">
+                <a href="mailto:hello@chiamakacoaching.com">hello@chiamakacoaching.com</a>
+            </div>
+            <p class="copyright">© 2025 Chiamaka Adeyemi Coaching. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- MODAL POP-UP STRUCTURE (For Email List) -->
+    <div id="modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <h3>Get Your Free Guide</h3>
+            <p>Enter your details below and the guide will download automatically.</p>
+            <form id="lead-magnet-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <button type="submit" class="cta-button">Download Now</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- TOAST NOTIFICATION (For Email List Success) -->
+    <div id="toast-notification" class="toast">
+        Thank you! Your guide will be in your inbox shortly.
+    </div>
+
+    <!-- LINK TO JAVASCRIPT FILES -->
+    <!-- These are now separated for better organization -->
+    <script src="chiamaka.js"></script>
+    <script src="bookings.js"></script>
+</body>
+</html>
