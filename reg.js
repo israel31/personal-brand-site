@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Configuration ---
     // Your existing script URL and slug
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwsfmK5_zgrfdD1fAsXrEsCg9aVtnQ-2V52vdLHgFfSQ-2yWUZud6Aat6qmHfnsU8wlGQ/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyTuiyFMlqE8lmzz1aDdEVn9wRzbj49ewEE47rxhpNHjPasiZz__hNabbPQxhxEY-oGmA/exec';
     const paystackSlug = 'ksaksjpqbc';
 
     // ==========================================================

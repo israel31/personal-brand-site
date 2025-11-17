@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JCI Registration</title>
+    <!-- Note: Assuming reg.css provides the necessary styling -->
     <link rel="stylesheet" href="reg.css">
 </head>
 <body>
@@ -25,6 +26,19 @@
                 <label for="phone">Phone Number</label>
                 <input type="tel" id="phone" name="phone" required>
             </div>
+
+            <!-- START: NEW CAMPUS FIELD ADDED -->
+            <div class="form-group">
+                <label for="campus">Campus</label>
+                <div class="select-wrapper">
+                    <select id="campus" name="campus" required>
+                        <option value="" disabled selected>Select your campus</option>
+                        <option value="Ugbowo Campus">Ugbowo Campus</option>
+                        <option value="Ekenhuan Campus">Ekehuan Campus</option>
+                    </select>
+                </div>
+            </div>
+            <!-- END: NEW CAMPUS FIELD ADDED -->
 
             <div class="form-group">
                 <label for="faculty">What faculty do you belong to?</label>
