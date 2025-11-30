@@ -3,100 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JCI Registration</title>
-    <!-- Note: Assuming reg.css provides the necessary styling -->
-    <link rel="stylesheet" href="reg.css">
+    <title>JCI Registration Closed</title>
+    <!-- Inline CSS based on your original reg.css for consistent branding -->
+    <style>
+        /* --- Global Styles & JCI Branding --- */
+        :root {
+            --primary-blue: #0072C6;
+            --accent-blue: #00ADEF;
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
+            --dark-gray: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* --- Main Container --- */
+        .form-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 120px;
+            margin-bottom: 20px;
+            /* Placeholder styling if image is missing */
+            height: 120px;
+            background-color: var(--primary-blue);
+            line-height: 120px;
+            font-size: 14px;
+            color: var(--white);
+            margin: 0 auto 20px;
+            border-radius: 8px;
+        }
+
+        h1, h2 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .closed-message {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #D9534F; /* A red color for urgency/closed state */
+        }
+        
+        .closed-detail {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .contact-link {
+            color: var(--primary-blue);
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="form-container">
-        <img src="jci-logo.png" alt="JCI Logo" class="logo">
-        <h2>Membership Registration</h2>
-        <p>Complete the form below to proceed with your registration.</p>
+        <!-- Placeholder for JCI Logo -->
+      <img src="jci-logo.png" alt="JCI Logo" class="logo"> 
+
         
-        <form id="registration-form">
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
-
-            <!-- START: NEW CAMPUS FIELD ADDED -->
-            <div class="form-group">
-                <label for="campus">Campus</label>
-                <div class="select-wrapper">
-                    <select id="campus" name="campus" required>
-                        <option value="" disabled selected>Select your campus</option>
-                        <option value="Ugbowo Campus">Ugbowo Campus</option>
-                        <option value="Ekenhuan Campus">Ekehuan Campus</option>
-                        <option value="Ekenhuan Campus">UBTH</option>
-                    </select>
-                </div>
-            </div>
-            <!-- END: NEW CAMPUS FIELD ADDED -->
-
-            <div class="form-group">
-                <label for="faculty">What faculty do you belong to?</label>
-                <!-- Added .select-wrapper div -->
-                <div class="select-wrapper">
-                    <select id="faculty" name="faculty" required>
-                        <option value="" disabled selected>Select your faculty</option>
-                        <option value="Faculty of Arts">Faculty of Arts</option>
-                        <option value="Faculty of Agriculture">Faculty of Agriculture</option>
-                        <option value="Basic Medical Science">Basic Medical Science</option>
-                        <option value="Faculty of Computing">Faculty of Computing</option>
-                        <option value="School of Dentistry">School of Dentistry</option>
-                        <option value="Faculty of Education">Faculty of Education</option>
-                        <option value="Faculty of Engineering">Faculty of Engineering</option>
-                        <option value="Faculty of Environmental Science">Faculty of Environmental Science</option>
-                        <option value="Faculty of Law">Faculty of Law</option>
-                        <option value="Faculty of Management Science">Faculty of Management Science</option>
-                        <option value="Faculty of Media and Communication Studies">Faculty of Media and Communication Studies</option>
-                        <option value="Faculty of Pharmacy">Faculty of Pharmacy</option>
-                        <option value="Faculty of Physical Science">Faculty of Physical Science</option>
-                        <option value="Faculty of Social Science">Faculty of Social Science</option>
-                        <option value="School of Medical Science">School of Basic Medical Science</option>
-                        <option value="Faculty of Nursing Sciences">Faculty of Nursing Sciences</option>
-                        <option value="Faculty of Science Laboratory Technology">Faculty of Science Laboratory Technology</option>
-                        <option value="College of Medicine">College of Medicine</option>
-                        <option value="Veterinary Medicine">Veterinary Medicine</option>
-                        <option value="Faculty of Life Science">Faculty of Life Science</option>
-                        <option value="Faculty of Vocational and Technical Education">Faculty of Vocational and Technical Education</option>
-                        <option value="Faculty of Sustainable Procurement, Environmental & Social Standards Enhancement">Faculty of Sustainable Procurement, Environmental & Social Standards Enhancement</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group" id="other-faculty-container" style="display: none;">
-                <label for="other_faculty">Please specify your faculty</label>
-                <input type="text" id="other_faculty" name="other_faculty">
-            </div>
-
-            <div class="form-group">
-                <label for="gender">Gender</label>
-                <!-- Added .select-wrapper div -->
-                <div class="select-wrapper">
-                    <select id="gender" name="gender" required>
-                        <option value="" disabled selected>Select your gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                </div>
-            </div>
-
-            <button type="submit" id="submit-button" class="btn">Proceed to Payment</button>
-        </form>
+        <h2>Important Update</h2>
+        
+        <div class="closed-message">
+            REGISTRATION PORTAL IS CLOSED
+        </div>
+        
+        <p class="closed-detail">
+            Thank you for your overwhelming interest! We have reached our registration capacity and the portal is now officially closed as of 11:59 PM.
+        </p>
+        
+        
     </div>
-    <script src="reg.js"></script>
 </body>
-
 </html>
-
-
