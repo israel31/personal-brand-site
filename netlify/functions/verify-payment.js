@@ -1,22 +1,28 @@
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
-
-exports.handler = async (event) => {
+export async function handler(event) {
   try {
-    if (!event.body) return { statusCode: 400, body: JSON.stringify({ paid: false }) };
+    if (!event.body) {
+      return { statusCode: 400, body: JSON.stringify({ paid: false }) };
+    }
 
     const { email } = JSON.parse(event.body);
-    if (!email) return { statusCode: 400, body: JSON.stringify({ paid: false }) };
+    if (!email) {
+      return { statusCode: 400, body: JSON.stringify({ paid: false }) };
+    }
 
-    const res = await fetch("https://api.paystack.co/transaction?perPage=100", {
-      headers: {
-        Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
-      },
-    });
+    const response = await fetch(
+      "https://api.paystack.co/transaction?perPage=100",
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+        },
+      }
+    );
 
-    const data = await res.json();
+    const data = await response.json();
 
-    if (!data || !Array.isArray(data.data)) throw new Error("Invalid Paystack response");
+    if (!data || !Array.isArray(data.data)) {
+      throw new Error("Invalid Paystack response");
+    }
 
     const paid = data.data.some(
       (tx) =>
@@ -35,4 +41,4 @@ exports.handler = async (event) => {
       body: JSON.stringify({ paid: false }),
     };
   }
-};
+      }
