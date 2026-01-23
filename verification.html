@@ -1,186 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group Chat Access Verification (Secure)</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Configure Font: Inter -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .card {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Payment Verification</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="min-h-screen flex items-center justify-center bg-gray-100">
 
-<div id="app" class="w-full max-w-md p-6 bg-white card rounded-xl transition-all duration-300">
-    <!-- Initial Verification State -->
-    <div id="verification-form-container">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Access Required</h1>
-        <p class="text-gray-500 mb-6">Please enter your email address to confirm you are on the approved list.</p>
+<div class="bg-white p-6 rounded-lg shadow w-full max-w-md">
+  <h2 class="text-2xl font-bold mb-4">Verify Payment</h2>
 
-        <div id="input-area" class="space-y-4">
-            <input type="email" id="email-input" placeholder="you@example.com"
-                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
-                   required>
+  <input
+    id="email"
+    type="email"
+    placeholder="Enter your email"
+    class="w-full border p-3 rounded mb-4"
+  />
 
-            <button id="verify-button"
-                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-150 focus:outline-none focus:ring-4 focus:ring-blue-500/50"
-                    onclick="verifyEmail()">
-                Verify Access
-            </button>
+  <button
+    onclick="verifyPayment()"
+    class="w-full bg-blue-600 text-white p-3 rounded"
+  >
+    Verify
+  </button>
 
-            <p id="message-box" class="text-sm text-center font-medium h-6"></p>
-        </div>
-    </div>
+  <p id="message" class="mt-4 text-center text-sm"></p>
 
-    <!-- Success/Chat Link State -->
-    <div id="success-container" class="hidden text-center p-8">
-        <svg class="mx-auto h-16 w-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <h2 class="mt-4 text-2xl font-semibold text-gray-800">Verification Successful!</h2>
-        <p class="mt-2 text-gray-600">You are on the approved list. Welcome to the group!</p>
-        
-        <a id="group-chat-link" href="#" target="_blank"
-           class="mt-6 inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition duration-150 focus:outline-none focus:ring-4 focus:ring-green-500/50">
-            Join Group Chat Now
-        </a>
-    </div>
+  <a
+    id="whatsapp"
+    href="https://chat.whatsapp.com/YOUR_GROUP_LINK"
+    target="_blank"
+    class="hidden mt-6 block text-center bg-green-600 text-white p-3 rounded"
+  >
+    Join WhatsApp Group
+  </a>
 </div>
 
 <script>
-    // --- Global Variables & Constants ---
-    
-    // 1. IMPORTANT: REPLACE THIS URL with the DEPLOYED URL of your Google Apps Script Web App.
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgRq2AteznzjGmpfrlDvQRYio0wbpuZ1aOhqmV_bM8SdyTnWHGO-EssmEI5cSjmYySKg/exec"; 
-    
-    // 2. The URL the user will be redirected to upon successful verification.
-    const CHAT_URL = "https://chat.whatsapp.com/KyiF7p9ZvDpB0Feu5tFVlP";
+async function verifyPayment() {
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message");
+  const whatsapp = document.getElementById("whatsapp");
 
-    // --- DOM Elements ---
-    const emailInput = document.getElementById('email-input');
-    const verifyButton = document.getElementById('verify-button');
-    const messageBox = document.getElementById('message-box');
-    const verificationContainer = document.getElementById('verification-form-container');
-    const successContainer = document.getElementById('success-container');
-    const groupChatLink = document.getElementById('group-chat-link');
+  whatsapp.classList.add("hidden");
+  message.textContent = "Checking payment...";
 
-    
-    /**
-     * Shows a message to the user and optionally changes the button state.
-     * @param {string} message The message to display.
-     * @param {string} type 'success', 'error', or 'info'.
-     */
-    function showMessage(message, type = 'info') {
-        messageBox.textContent = message;
-        messageBox.className = 'text-sm text-center font-medium h-6 mt-4 transition duration-300';
-        
-        if (type === 'error') {
-            messageBox.classList.add('text-red-500');
-        } else if (type === 'success') {
-            messageBox.classList.add('text-green-500');
-        } else {
-            messageBox.classList.add('text-gray-500');
-        }
+  if (!email) {
+    message.textContent = "Enter a valid email";
+    return;
+  }
+
+  try {
+    const res = await fetch("/.netlify/functions/verify-payment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email })
+    });
+
+    const data = await res.json();
+
+    if (data.paid) {
+      message.textContent = "Payment verified ✅";
+      whatsapp.classList.remove("hidden");
+    } else {
+      message.textContent = "No successful payment found ❌";
     }
-
-    /**
-     * Switches the UI to the success state and shows the chat link.
-     */
-    function showSuccessScreen() {
-        verificationContainer.classList.add('hidden');
-        successContainer.classList.remove('hidden');
-        groupChatLink.href = CHAT_URL;
-    }
-
-    /**
-     * Main function to check the user's email against the Apps Script endpoint.
-     */
-    window.verifyEmail = async function() {
-        if (APPS_SCRIPT_URL === "YOUR_APPS_SCRIPT_WEB_APP_URL_HERE") {
-             showMessage("Configuration Error: Please update APPS_SCRIPT_URL in the script.", 'error');
-             return;
-        }
-
-        const email = emailInput.value.trim();
-        
-        if (!email || !/\S+@\S+\.\S+/.test(email)) {
-            showMessage("Please enter a valid email address.", 'error');
-            return;
-        }
-        
-        verifyButton.disabled = true;
-        verifyButton.textContent = 'Verifying...';
-        showMessage("Checking approved list...", 'info');
-        
-        // Construct the full URL with the email parameter
-        const verificationUrl = `${APPS_SCRIPT_URL}?email=${encodeURIComponent(email)}`;
-        
-        try {
-            let response = null;
-            const maxRetries = 3;
-
-            for (let i = 0; i < maxRetries; i++) {
-                try {
-                    response = await fetch(verificationUrl);
-                    if (response.ok) break;
-                } catch (e) {
-                    console.error("Fetch error:", e);
-                }
-                if (i < maxRetries - 1) {
-                    await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
-                }
-            }
-
-            if (!response || !response.ok) {
-                throw new Error(`Failed to contact verification service. Status: ${response ? response.status : 'Network Error'}.`);
-            }
-            
-            const result = await response.json();
-            
-            if (result.found === true) {
-                showMessage("Email verified successfully!", 'success');
-                setTimeout(showSuccessScreen, 1000);
-            } else {
-                showMessage("Error: This email is not on the approved list.", 'error');
-            }
-            
-        } catch (e) {
-            console.error("Verification failed:", e);
-            showMessage("An unexpected error occurred during verification.", 'error');
-        } finally {
-            if (successContainer.classList.contains('hidden')) {
-                verifyButton.disabled = false;
-                verifyButton.textContent = 'Verify Access';
-            }
-        }
-    }
-
-    // Since the list is checked dynamically on click, no initial load is needed.
-    window.onload = function() {
-        if (APPS_SCRIPT_URL === "YOUR_APPS_SCRIPT_WEB_APP_URL_HERE") {
-             showMessage("Awaiting Apps Script setup...", 'info');
-             verifyButton.disabled = true;
-        } else {
-             showMessage("Ready to verify email.", 'info');
-             verifyButton.disabled = false;
-        }
-    }
+  } catch (err) {
+    message.textContent = "Verification failed";
+  }
+}
 </script>
+
 </body>
-
 </html>
-
