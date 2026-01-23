@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Payment Verification</title>
+  <meta charset="UTF-8" />
+  <title>Verify Payment</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center bg-gray-100">
 
 <div class="bg-white p-6 rounded-lg shadow w-full max-w-md">
-  <h2 class="text-2xl font-bold mb-4">Verify Payment</h2>
+  <h1 class="text-2xl font-bold mb-4">Payment Verification</h1>
 
   <input
     id="email"
     type="email"
-    placeholder="Enter your email"
+    placeholder="Enter your payment email"
     class="w-full border p-3 rounded mb-4"
   />
 
   <button
-    onclick="verifyPayment()"
+    onclick="verify()"
     class="w-full bg-blue-600 text-white p-3 rounded"
   >
     Verify
   </button>
 
-  <p id="message" class="mt-4 text-center text-sm"></p>
+  <p id="msg" class="mt-4 text-center text-sm"></p>
 
   <a
-    id="whatsapp"
+    id="wa"
     href="https://chat.whatsapp.com/YOUR_GROUP_LINK"
     target="_blank"
     class="hidden mt-6 block text-center bg-green-600 text-white p-3 rounded"
@@ -37,16 +37,16 @@
 </div>
 
 <script>
-async function verifyPayment() {
+async function verify() {
   const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("message");
-  const whatsapp = document.getElementById("whatsapp");
+  const msg = document.getElementById("msg");
+  const wa = document.getElementById("wa");
 
-  whatsapp.classList.add("hidden");
-  message.textContent = "Checking payment...";
+  wa.classList.add("hidden");
+  msg.textContent = "Checking payment...";
 
   if (!email) {
-    message.textContent = "Enter a valid email";
+    msg.textContent = "Enter a valid email";
     return;
   }
 
@@ -54,19 +54,19 @@ async function verifyPayment() {
     const res = await fetch("/.netlify/functions/verify-payment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ email }),
     });
 
     const data = await res.json();
 
     if (data.paid) {
-      message.textContent = "Payment verified ✅";
-      whatsapp.classList.remove("hidden");
+      msg.textContent = "Payment verified ✅";
+      wa.classList.remove("hidden");
     } else {
-      message.textContent = "No successful payment found ❌";
+      msg.textContent = "No successful payment found ❌";
     }
-  } catch (err) {
-    message.textContent = "Verification failed";
+  } catch {
+    msg.textContent = "Verification failed";
   }
 }
 </script>
