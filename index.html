@@ -1,98 +1,216 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="I build fast, clean, personal brand websites for consultants, coaches, and freelancers to help them look premium and get booked.">
-    
-    <title>Personal Brand Websites for Consultants & Coaches</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NextBranch Systems | Future-Forward Product Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="container">
-            <p class="site-title">Okwudili Israel</p>
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div class="logo">NextBranch<span>Systems</span></div>
+      
+      <!-- Hamburger Menu Icon -->
+      <button class="mobile-nav-toggle" aria-label="Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <nav class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="#products">Our Products</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <span class="badge">Innovation at Scale</span>
+        <h1>We build digital ecosystems for the <span>modern world.</span></h1>
+        <p>NextBranch Systems is a product solutions platform powering industry-leading tools for identity, payments, and automation.</p>
+        <div class="hero-btns">
+          <a href="#products" class="btn btn-primary">View Portfolio</a>
+          <a href="#about" class="btn btn-secondary">Learn Our Story</a>
         </div>
-    </header>
+      </div>
+      <div class="hero-image">
+        <!-- Replace this URL with your actual banner image -->
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426" alt="Digital Solutions Dashboard">
+        <div class="hero-image-overlay"></div>
+      </div>
+    </div>
+    <div class="hero-bg-blur"></div>
+  </section>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section id="hero" class="hero-section">
-            <div class="container">
-                <h1>I build personal brand websites for consultants, coaches & freelancers</h1>
-                <p class="subheadline">Fast, clean, and designed to help you look premium & get booked.</p>
-                <a href="#contact" class="cta-button">Get Your Site</a>
-            </div>
-        </section>
+  <!-- STATS / WHAT WE DO -->
+  <section class="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Core Capabilities</h2>
+        <p>Specialized engineering for complex digital challenges.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon">🚀</div>
+          <h3>Product Engineering</h3>
+          <p>Turning visionary concepts into scalable, production-ready applications.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔐</div>
+          <h3>Identity & Access</h3>
+          <p>Next-gen security protocols and seamless verification systems.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">⚙️</div>
+          <h3>Process Automation</h3>
+          <p>Optimizing workflows through intelligent software and smart integration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- ABOUT ME -->
-        <section id="about" class="about-section">
-            <div class="container">
-                <h2>A developer focused on clarity, not clutter.</h2>
-                <p>I'm a web developer focused on helping personal brands build trust online. I specialize in 1-page sites that deliver clarity and conversion — not design fluff.</p>
-            </div>
-        </section>
+  <!-- PRODUCTS SECTION -->
+  <section id="products" class="products">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Ecosystem</h2>
+        <p>Independent platforms powered by NextBranch core technology.</p>
+      </div>
+
+      <div class="product-grid">
+
+        <!-- GateKeeper -->
+        <div class="product-card reverse">
+          <div class="product-info">
+            <div class="product-tag">Access Gating</div>
+            <h4>GateKeeper by NextBranch</h4>
+            <p>A smart form-based platform for collecting data, processing payments, and controlling access to digital and physical experiences.</p>
+            <a href="https://gatekeeper.gt.tc" target="_blank" class="product-link">Visit GateKeeper →</a>
+          </div>
+          <div class="product-visual gatekeeper-bg"></div>
+        </div>
+
+        <!-- qTap -->
+        <div class="product-card">
+          <div class="product-info">
+            <div class="product-tag">Payments</div>
+            <h4>qTap</h4>
+            <p>Smart, fast, contactless interactions for everyday use. Revolutionizing how physical meets digital.</p>
+            <a href="https://useqtap.netlify.app" target="_blank" class="product-link">Visit qTap →</a>
+          </div>
+          <div class="product-visual qtap-bg"></div>
+        </div>
         
-        <!-- WHAT YOU GET -->
-        <section id="features" class="features-section">
-            <div class="container">
-                <h2>What You Get</h2>
-                <div class="features-grid">
-                    <div class="feature-item">✓ 1-page responsive site</div>
-                    <div class="feature-item">✓ Delivered in 72 hours</div>
-                    <div class="feature-item">✓ Designed for personal brands</div>
-                    <div class="feature-item">✓ Mobile-first</div>
-                    <div class="feature-item">✓ Clean, modern feel</div>
-                    <div class="feature-item">✓ Ready to help you close clients</div>
-                </div>
-            </div>
-        </section>
+      </div>
+    </div>
+  </section>
 
-        <!-- PORTFOLIO -->
-        <section id="portfolio" class="portfolio-section">
-            <div class="container">
-                <h2>Sample Client Sites</h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-card">
-                        <img onclick="window.location.href='https://israel31.github.io/jude-strategist-site/'" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200" alt="Screenshot of Jude the Strategist's website">
-                        <h3>Jude the Strategist</h3>
-                        <p>Marketing consultant. One-page site focused on conversion and clear calls to action.</p>
-                    </div>
-                    <div class="portfolio-card">
-                        <img onclick="window.location.href='https://israel31.github.io/sarah-life-coach-site/'" src="https://images.unsplash.com/photo-1578048421563-9aa187e12baf?q=80&w=980&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Screenshot of Sarah the Life Coach's website">
-                        <h3>Sarah the Life Coach</h3>
-                        <p>Coaching brand website with a focus on building credibility and a welcoming feel.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-box">
+        <h3>Building the infrastructure of tomorrow.</h3>
+        <p>We are a product-focused technology company. We don't just build apps; we build scalable solutions that solve friction points for individuals, businesses, and institutions globally.</p>
+      </div>
+    </div>
+  </section>
 
-        <!-- CONTACT -->
-        <section id="contact" class="contact-section">
-            <div class="container">
-                <h2>Let's Build Your Brand</h2>
-                <p>Want a clean site that helps you get clients? Email me or book a free call.</p>
-                <div class="contact-buttons">
-                    <a href="mailto:officialisraelokwudili31@gmail.com" class="cta-button">Email Me</a>
-                    <a href="#" class="cta-button secondary">Book a Free Call</a>
-                </div>
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-grid">
+        
+        <!-- Left Side: Info -->
+        <div class="contact-info">
+          <span class="badge">Contact Us</span>
+          <h2>Let’s build the future <span>together.</span></h2>
+          <p>Have a question about our products or interested in a partnership? Our team is ready to help you scale.</p>
+          
+          <div class="contact-details">
+            <div class="detail-item">
+              <strong>Email</strong>
+              <p>nextbranchsystems@gmail.com</p>
             </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>© 2024 Israel Okwudili. All rights reserved.</p>
+            <!-- <div class="detail-item">
+              <strong>Office</strong>
+              <p>Innovation Hub, Tech District<br>San Francisco, CA</p>
+            </div> -->
+          </div>
         </div>
-    </footer>
-    
-    <script src="script.js"></script>
 
+        <!-- Right Side: Form -->
+        <div class="contact-form-card">
+          <form id="contact-form" action="https://formspree.io/f/mkojdger" method="POST">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="john@company.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="product">Interested In</label>
+              <select id="product" name="product">
+                <option value="general">General Inquiry</option>
+                <option value="qtap">qTap Platform</option>
+                <option value="gatekeeper">GateKeeper Security</option>
+                <option value="custom">Custom Engineering</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          </form>
+          
+          <!-- Success State (Hidden by default) -->
+          <div id="form-success" class="form-success-msg" style="display: none;">
+            <div class="success-icon">✓</div>
+            <h3>Message Sent!</h3>
+            <p>Thanks for reaching out. A member of our team will contact you shortly.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">NextBranch<span>Systems</span></div>
+          <p>© 2026 NextBranch Systems. All rights reserved.</p>
+        </div>
+        <div class="footer-subs">
+          <p><strong>Our Products</strong></p>
+          <a href="#">qTap</a>
+          <a href="#">GateKeeper</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
