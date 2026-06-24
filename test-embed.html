@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Third-Party Integration Test Sandbox</title>
+</head>
+<body style="background:#f1f5f9; padding:40px; display:flex; justify-content:center; align-items:center; min-height:100vh;">
+
+<div id="gatekeeper-form-container"></div>
+
+<script src="https://gatekeeper.gt.tc/js/embedding.js" id="gk-embed-script"></script>
+
+<script>
+    function bootGatekeeper() {
+        // Force evaluation check against the global window state
+        if (window.GatekeeperForm) {
+            console.log("Found Gatekeeper wrapper! Initializing form engine...");
+            window.GatekeeperForm.init("gatekeeper-form-container", {
+                formId: "d2e6c61d-e463-4189-a9b9-c184e869183c",
+                embedKey: "gk_live_4d76ff8d17a07098edecb1c1"
+            });
+        } else {
+            // If the IIFE wrapper hasn't finished assigning to the window yet, wait 20ms
+            console.log("Gatekeeper initializing... re-checking in 20ms");
+            setTimeout(bootGatekeeper, 20);
+        }
+    }
+
+    // Trigger the boot checker as soon as the script completes downloading
+    document.getElementById('gk-embed-script').onload = bootGatekeeper;
+
+    // Fallback safety if the script was already loaded/cached by the browser instantly
+    if (document.readyState === 'complete' || window.GatekeeperForm) {
+        bootGatekeeper();
+    }
+</script>
+</body>
+</html>
+
+
