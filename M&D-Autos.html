@@ -1,0 +1,1603 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#c8102e">
+    <title>M&D Autos — Exceptional Cars</title>
+    <style>
+        :root {
+            --site-primary: #17231f;
+            --site-secondary: #b69a70;
+            --site-background: #f6f5f2;
+            --site-on-primary: #ffffff;
+            --site-on-secondary: #171914;
+            --site-on-background: #20231f;
+            --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --site-heading-scale: 1;
+            --site-spacing-scale: 1;
+            --site-radius-scale: 1;
+            --site-decoration-opacity: 1;
+            color-scheme: light dark
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--site-font-body);
+            background: light-dark(#f6f5f2, #141715);
+            color: light-dark(#20231f, #f1f1ed);
+            line-height: 1.5
+        }
+
+        button,
+        input,
+        select {
+            font: inherit
+        }
+
+        button,
+        a {
+            touch-action: manipulation
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        button {
+            cursor: pointer
+        }
+
+        .app {
+            min-height: 100vh;
+            background-color: var(--site-background);
+            color: var(--site-on-background);
+            border-radius: 0;
+            overflow: hidden
+        }
+
+        .container {
+            width: min(1240px, 100% - 40px);
+            margin-inline: auto
+        }
+
+        .topbar {
+            background: #17231f;
+            color: #fff;
+            text-align: center;
+            padding: 8px 14px;
+            font-size: 11px;
+            letter-spacing: .13em;
+            text-transform: uppercase
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(246, 245, 242, .96);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid #e4e2dc;
+            color: #1d251f
+        }
+
+        .nav {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: .16em;
+            white-space: nowrap
+        }
+
+        .brand span {
+            color: #a78a5f
+        }
+
+        .navlinks {
+            display: none;
+            gap: 28px;
+            font-size: 13px;
+            color: #50564f
+        }
+
+        .navlinks a:hover {
+            color: #92764d
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .icon-btn {
+            height: 42px;
+            width: 42px;
+            border: 1px solid #deddd6;
+            background: transparent;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: #17231f
+        }
+
+        .menu-btn {
+            display: grid
+        }
+
+        .desktop-cta {
+            display: none
+        }
+
+        .hero {
+            position: relative;
+            background: #17231f;
+            color: white;
+            min-height: 590px;
+            display: flex;
+            align-items: flex-end;
+            isolation: isolate
+        }
+
+        .hero:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background: linear-gradient(0deg, rgba(9, 16, 13, .88) 0%, rgba(9, 16, 13, .2) 60%, rgba(9, 16, 13, .05) 100%), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=85') center 58%/cover no-repeat
+        }
+
+        .hero:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(90deg, rgba(8, 16, 12, .42), transparent 80%);
+            opacity: var(--site-decoration-opacity)
+        }
+
+        .hero-content {
+            padding: 74px 0 38px;
+            max-width: 760px
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #d2bd99;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .eyebrow:before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: #c0a477
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 11vw, 84px);
+            line-height: .99;
+            letter-spacing: -.055em;
+            font-weight: 550;
+            margin: 22px 0 18px;
+            max-width: 700px
+        }
+
+        .hero p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #e3e4de;
+            max-width: 440px;
+            margin: 0 0 28px
+        }
+
+        .button {
+            border: 0;
+            padding: 15px 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            font-size: 11px;
+            font-weight: 750;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            min-height: 50px
+        }
+
+        .button-light {
+            background: #f6f5f2;
+            color: #17231f
+        }
+
+        .button-dark {
+            background: #17231f;
+            color: #fff
+        }
+
+        .button-outline {
+            background: transparent;
+            color: inherit;
+            border: 1px solid #aaa
+        }
+
+        .button .arrow {
+            font-size: 17px;
+            font-weight: 400
+        }
+
+        .hero-foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 48px;
+            padding-top: 17px;
+            border-top: 1px solid #ffffff48;
+            color: #d2d6d0;
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase
+        }
+
+        .section {
+            padding: 66px 0
+        }
+
+        .section-head {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 26px
+        }
+
+        .kicker {
+            font-size: 10px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: #8b7658;
+            font-weight: 750
+        }
+
+        .section h2 {
+            font-size: clamp(30px, 7vw, 49px);
+            line-height: 1.05;
+            letter-spacing: -.045em;
+            font-weight: 550;
+            margin: 8px 0 0
+        }
+
+        .muted {
+            color: #777b73
+        }
+
+        .text-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 11px;
+            font-weight: 750;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            border-bottom: 1px solid #a78a5f;
+            padding-bottom: 7px;
+            align-self: flex-start
+        }
+
+        .finder {
+            background: #fff;
+            border: 1px solid #e4e2dc;
+            padding: 18px;
+            margin-top: -1px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 14px 40px #11111108
+        }
+
+        .finder-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            font-size: 14px;
+            font-weight: 700
+        }
+
+        .finder-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px
+        }
+
+        .field label {
+            display: block;
+            font-size: 10px;
+            color: #73786f;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin: 0 0 7px
+        }
+
+        .field select,
+        .field input {
+            width: 100%;
+            border: 1px solid #dfded8;
+            background: #fbfaf7;
+            color: #222820;
+            padding: 13px 12px;
+            min-height: 47px;
+            border-radius: 0;
+            outline-color: #a78a5f;
+            font-size: 13px
+        }
+
+        .finder .button {
+            width: 100%;
+            margin-top: 8px
+        }
+
+        .inventory {
+            background: #efeee9
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px
+        }
+
+        .car-card {
+            background: #fff;
+            min-width: 0;
+            border: 1px solid #e5e3dc;
+            transition: transform .2s, box-shadow .2s;
+            cursor: pointer
+        }
+
+        .car-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px #17231f0c
+        }
+
+        .car-image {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+            background: #ddd
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform .5s
+        }
+
+        .car-card:hover img {
+            transform: scale(1.035)
+        }
+
+        .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #f6f5f2;
+            padding: 7px 9px;
+            font-size: 9px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            font-weight: 800
+        }
+
+        .heart {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: 0;
+            border-radius: 50%;
+            background: #f6f5f2e8;
+            color: #17231f;
+            width: 36px;
+            height: 36px;
+            font-size: 19px
+        }
+
+        .car-info {
+            padding: 17px
+        }
+
+        .car-make {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            color: #8a7657;
+            font-weight: 750
+        }
+
+        .car-info h3 {
+            font-size: 19px;
+            letter-spacing: -.025em;
+            font-weight: 600;
+            margin: 4px 0 8px
+        }
+
+        .car-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+            color: #777b73;
+            font-size: 11px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eeece6
+        }
+
+        .car-specs span {
+            display: flex;
+            align-items: center;
+            gap: 5px
+        }
+
+        .car-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            padding-top: 14px
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 750;
+            letter-spacing: -.03em
+        }
+
+        .details-link {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .all-inventory {
+            text-align: center;
+            margin-top: 26px
+        }
+
+        .all-inventory .button {
+            width: 100%
+        }
+
+        .editorial {
+            background: #17231f;
+            color: #fff
+        }
+
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            align-items: center
+        }
+
+        .editorial-photo {
+            min-height: 310px;
+            background: #29342e;
+            overflow: hidden
+        }
+
+        .editorial-photo img {
+            width: 100%;
+            height: 100%;
+            min-height: 310px;
+            object-fit: cover;
+            display: block
+        }
+
+        .editorial-copy {
+            padding: 4px 0
+        }
+
+        .editorial-copy h2 {
+            font-size: clamp(34px, 8vw, 55px);
+            line-height: 1.02;
+            letter-spacing: -.05em;
+            margin: 12px 0 18px
+        }
+
+        .editorial-copy p {
+            color: #c6ccc5;
+            max-width: 430px;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 25px
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #deddd6;
+            border: 1px solid #deddd6
+        }
+
+        .benefit {
+            background: #f6f5f2;
+            padding: 22px 16px;
+            min-height: 132px
+        }
+
+        .benefit .num {
+            font-size: 10px;
+            color: #a78a5f;
+            letter-spacing: .15em
+        }
+
+        .benefit h3 {
+            font-size: 14px;
+            margin: 12px 0 5px
+        }
+
+        .benefit p {
+            font-size: 11px;
+            line-height: 1.6;
+            color: #777b73;
+            margin: 0
+        }
+
+        .newsletter {
+            background: #e5e1d8;
+            padding: 48px 0
+        }
+
+        .newsletter-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 18px
+        }
+
+        .newsletter h2 {
+            font-size: 31px;
+            line-height: 1.1;
+            letter-spacing: -.04em;
+            margin: 7px 0
+        }
+
+        .newsletter p {
+            font-size: 13px;
+            color: #656b62;
+            margin: 0
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .newsletter-form input {
+            min-height: 48px;
+            border: 1px solid #cfccc3;
+            background: #f8f7f3;
+            padding: 12px 14px;
+            min-width: 0
+        }
+
+        .footer {
+            background: #111b16;
+            color: #fff;
+            padding: 42px 0 24px
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 26px;
+            padding-bottom: 35px
+        }
+
+        .footer-brand p {
+            font-size: 12px;
+            color: #aeb6ad;
+            max-width: 270px;
+            line-height: 1.7
+        }
+
+        .footer-col h4 {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .16em;
+            color: #bca47f;
+            margin: 0 0 13px
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 12px;
+            color: #d4d8d2;
+            margin: 9px 0
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #ffffff22;
+            padding-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 10px;
+            color: #aeb6ad
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 40;
+            background: #17231f;
+            color: #fff;
+            padding: 22px;
+            flex-direction: column
+        }
+
+        .mobile-nav.open {
+            display: flex
+        }
+
+        .mobile-nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 48px
+        }
+
+        .mobile-nav a {
+            font-size: 30px;
+            letter-spacing: -.04em;
+            padding: 14px 0;
+            border-bottom: 1px solid #ffffff28
+        }
+
+        .mobile-nav .close {
+            font-size: 26px;
+            border: 0;
+            background: none;
+            color: white
+        }
+
+        .page {
+            display: none;
+            min-height: 70vh
+        }
+
+        .page.active {
+            display: block
+        }
+
+        .page-top {
+            background: #17231f;
+            color: white;
+            padding: 38px 0 30px
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #c5c9c1;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-bottom: 20px
+        }
+
+        .page-top h1 {
+            font-size: clamp(36px, 8vw, 60px);
+            line-height: 1.02;
+            letter-spacing: -.05em;
+            margin: 0
+        }
+
+        .page-top p {
+            color: #c8cec7;
+            font-size: 13px;
+            max-width: 500px
+        }
+
+        .catalog-layout {
+            padding: 30px 0 64px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px
+        }
+
+        .filter-panel {
+            background: #fff;
+            border: 1px solid #e3e1db;
+            padding: 17px;
+            height: max-content
+        }
+
+        .filter-panel h3 {
+            font-size: 15px;
+            margin: 0 0 16px
+        }
+
+        .filter-panel .field {
+            margin-bottom: 13px
+        }
+
+        .filter-panel .button {
+            width: 100%
+        }
+
+        .catalog-tools {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px
+        }
+
+        .catalog-tools strong {
+            font-size: 13px
+        }
+
+        .sort-select {
+            padding: 10px;
+            border: 1px solid #d9d7d0;
+            background: #fff;
+            color: #222;
+            font-size: 12px
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px
+        }
+
+        .empty {
+            background: #fff;
+            padding: 35px 18px;
+            text-align: center;
+            border: 1px solid #e5e3dc
+        }
+
+        .detail-layout {
+            padding: 25px 0 60px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 26px
+        }
+
+        .gallery-main {
+            height: 260px;
+            background: #e5e3dc;
+            overflow: hidden
+        }
+
+        .gallery-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .gallery-thumbs {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px
+        }
+
+        .gallery-thumbs button {
+            border: 2px solid transparent;
+            padding: 0;
+            height: 65px;
+            width: 82px;
+            overflow: hidden;
+            background: #ddd
+        }
+
+        .gallery-thumbs button.selected {
+            border-color: #a78a5f
+        }
+
+        .gallery-thumbs img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .detail-brand {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            color: #91754d;
+            font-weight: 800
+        }
+
+        .detail-title {
+            font-size: clamp(32px, 7vw, 49px);
+            line-height: 1.02;
+            letter-spacing: -.05em;
+            margin: 5px 0 12px
+        }
+
+        .detail-price {
+            font-size: 27px;
+            font-weight: 750;
+            margin: 12px 0 5px
+        }
+
+        .detail-note {
+            font-size: 11px;
+            color: #73786f
+        }
+
+        .detail-actions {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 9px;
+            margin: 20px 0
+        }
+
+        .detail-actions .button {
+            width: 100%
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid #deddd6;
+            border-left: 1px solid #deddd6;
+            margin-top: 22px
+        }
+
+        .spec {
+            padding: 13px;
+            border-right: 1px solid #deddd6;
+            border-bottom: 1px solid #deddd6
+        }
+
+        .spec span {
+            display: block;
+            font-size: 10px;
+            color: #777b73;
+            text-transform: uppercase;
+            letter-spacing: .08em
+        }
+
+        .spec strong {
+            font-size: 13px;
+            display: block;
+            margin-top: 4px
+        }
+
+        .detail-section {
+            margin-top: 24px
+        }
+
+        .detail-section h3 {
+            font-size: 16px
+        }
+
+        .detail-section p {
+            font-size: 13px;
+            color: #686f66;
+            line-height: 1.8
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translate(-50%, 20px);
+            background: #17231f;
+            color: white;
+            padding: 13px 18px;
+            font-size: 12px;
+            z-index: 70;
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+            max-width: calc(100% - 32px);
+            text-align: center
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translate(-50%, 0)
+        }
+
+        .wa-float {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            z-index: 15;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #1f7a4d;
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 21px;
+            box-shadow: 0 8px 24px #0002;
+            border: 0
+        }
+
+        .hidden {
+            display: none !important
+        }
+
+        @media(min-width:650px) {
+            .container {
+                width: min(1240px, 100% - 64px)
+            }
+
+            .nav {
+                height: 82px
+            }
+
+            .brand {
+                font-size: 22px
+            }
+
+            .navlinks {
+                display: flex
+            }
+
+            .menu-btn {
+                display: none
+            }
+
+            .desktop-cta {
+                display: inline-flex
+            }
+
+            .hero {
+                min-height: 690px
+            }
+
+            .hero-content {
+                padding-bottom: 46px
+            }
+
+            .finder {
+                padding: 22px 24px
+            }
+
+            .finder-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .finder .button {
+                grid-column: span 2
+            }
+
+            .section {
+                padding: 86px 0
+            }
+
+            .section-head {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end
+            }
+
+            .car-grid,
+            .catalog-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 18px
+            }
+
+            .car-image {
+                height: 230px
+            }
+
+            .all-inventory .button {
+                width: auto
+            }
+
+            .editorial-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 48px
+            }
+
+            .editorial-photo,
+            .editorial-photo img {
+                min-height: 430px
+            }
+
+            .benefits {
+                grid-template-columns: repeat(4, 1fr)
+            }
+
+            .benefit {
+                padding: 25px;
+                min-height: 155px
+            }
+
+            .newsletter-inner {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between
+            }
+
+            .newsletter-form {
+                flex-direction: row;
+                width: min(430px, 48%)
+            }
+
+            .newsletter-form input {
+                flex: 1
+            }
+
+            .footer-top {
+                grid-template-columns: 2fr 1fr 1fr 1fr
+            }
+
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between
+            }
+
+            .catalog-layout {
+                grid-template-columns: 230px 1fr;
+                gap: 24px
+            }
+
+            .catalog-tools {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between
+            }
+
+            .detail-layout {
+                grid-template-columns: 1.15fr .85fr;
+                gap: 38px;
+                padding-top: 38px
+            }
+
+            .gallery-main {
+                height: 380px
+            }
+
+            .detail-actions {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .detail-actions .button:first-child {
+                grid-column: span 2
+            }
+        }
+
+        @media(min-width:950px) {
+            .container {
+                width: min(1240px, 100% - 80px)
+            }
+
+            .navlinks {
+                gap: 34px
+            }
+
+            .hero {
+                min-height: 760px
+            }
+
+            .hero-content {
+                padding-bottom: 52px
+            }
+
+            .finder {
+                max-width: 1100px;
+                margin: -38px auto 0;
+                padding: 24px 28px
+            }
+
+            .finder-grid {
+                grid-template-columns: 1.1fr 1fr 1fr 1fr auto;
+                align-items: end
+            }
+
+            .finder .button {
+                grid-column: auto;
+                margin: 0;
+                min-width: 155px
+            }
+
+            .car-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 20px
+            }
+
+            .car-image {
+                height: 245px
+            }
+
+            .catalog-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+
+            .gallery-main {
+                height: 480px
+            }
+
+            .footer-top {
+                gap: 40px
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                scroll-behavior: auto !important;
+                transition: none !important
+            }
+        }
+    </style>
+    <style>
+        :root {
+            --site-primary: #c8102e;
+            --site-secondary: #111111;
+            --site-background: #f7f7f7;
+            --site-on-primary: #ffffff;
+            --site-on-secondary: #ffffff;
+            --site-on-background: #171717;
+            color-scheme: light
+        }
+
+        body {
+            background: #111;
+            color: #171717
+        }
+
+        .app {
+            background: #f7f7f7;
+            color: #171717
+        }
+
+        .topbar {
+            background: #c8102e;
+            color: #fff
+        }
+
+        .header {
+            background: rgba(247, 247, 247, .97);
+            color: #171717
+        }
+
+        .brand span {
+            color: #c8102e
+        }
+
+        .navlinks a:hover {
+            color: #c8102e
+        }
+
+        .icon-btn {
+            color: #171717
+        }
+
+        .hero {
+            background: #111
+        }
+
+        .hero:before {
+            background: linear-gradient(0deg, rgba(0, 0, 0, .9) 0%, rgba(0, 0, 0, .25) 60%, rgba(0, 0, 0, .08) 100%), url('https://images.unsplash.com/photo-1669234226129-8ede05b40eff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D') center 58%/cover no-repeat
+        }
+
+        .eyebrow {
+            color: #ff6b7f
+        }
+
+        .eyebrow:before {
+            background: #c8102e
+        }
+
+        .button-dark {
+            background: #c8102e;
+            color: #fff
+        }
+
+        .button-light {
+            background: #fff;
+            color: #111
+        }
+
+        .kicker,
+        .car-make,
+        .detail-brand {
+            color: #c8102e
+        }
+
+        .text-link {
+            border-color: #c8102e
+        }
+
+        .field select,
+        .field input {
+            outline-color: #c8102e
+        }
+
+        .inventory {
+            background: #ededed
+        }
+
+        .editorial {
+            background: #111;
+            color: #fff
+        }
+
+        .editorial-photo {
+            background: #242424
+        }
+
+        .benefit {
+            background: #f7f7f7
+        }
+
+        .benefit .num {
+            color: #c8102e
+        }
+
+        .newsletter {
+            background: #ededed
+        }
+
+        .footer {
+            background: #111
+        }
+
+        .footer-col h4 {
+            color: #ff6b7f
+        }
+
+        .mobile-nav,
+        .page-top {
+            background: #111
+        }
+
+        .gallery-thumbs button.selected {
+            border-color: #c8102e
+        }
+
+        .wa-float {
+            background: #c8102e
+        }
+    </style>
+</head>
+
+<body>
+    <main class="app" id="app">
+        <div class="topbar">Mercedes-Benz · Toyota · Lexus · BMW · More quality cars · Lagos, Nigeria</div>
+        <header class="header">
+            <div class="container nav"><a href="#home" class="brand"
+                    aria-label="M&D Autos home">M&D<span>AUTOS</span></a>
+                <nav class="navlinks"><a href="#home">Home</a><a href="#inventory">Our cars</a><a href="#approach">Our
+                        approach</a></nav>
+                <div class="nav-actions"><button class="icon-btn" aria-label="Search inventory"
+                        onclick="showPage('catalogue');document.getElementById('catalogSearch').focus()"><svg width="18"
+                            height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                            <circle cx="10.8" cy="10.8" r="6.8" />
+                            <path d="m16 16 5 5" />
+                        </svg></button><a class="button button-dark desktop-cta" href="#inventory">Explore cars <span
+                            class="arrow">↗</span></a><button class="icon-btn menu-btn" aria-label="Open menu"
+                        onclick="toggleMenu(true)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.7">
+                            <path d="M3 7h18M3 12h18M3 17h18" />
+                        </svg></button></div>
+            </div>
+        </header>
+        <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+            <div class="mobile-nav-top"><a href="#home" class="brand">M&D<span>AUTOS</span></a><button class="close"
+                    aria-label="Close menu" onclick="toggleMenu(false)">×</button></div><a href="#home"
+                onclick="toggleMenu(false)">Home <span style="float:right">↗</span></a><a href="#inventory"
+                onclick="toggleMenu(false)">Explore cars <span style="float:right">↗</span></a><a href="#approach"
+                onclick="toggleMenu(false)">Our approach <span style="float:right">↗</span></a><a href="#contact"
+                onclick="toggleMenu(false)">Contact <span style="float:right">↗</span></a>
+            <p style="margin-top:auto;color:#aeb6ad;font-size:12px">Exceptional cars. A more considered experience.</p>
+        </nav>
+        <div id="homePage" class="page active">
+            <section class="hero">
+                <div class="container hero-content">
+                    <div class="eyebrow">Mercedes-Benz · Toyota · And more</div>
+                    <h1>Find the car<br>that moves<br>you.</h1>
+                    <p>From everyday Toyotas to refined Mercedes-Benz models, explore a multi-brand collection for
+                        different needs and budgets.</p><a class="button button-light" href="#inventory">Explore
+                        available cars <span class="arrow">↗</span></a>
+                    <div class="hero-foot"><span>Multiple brands. One destination.</span><span>01 / 03 &nbsp; ↗</span>
+                    </div>
+                </div>
+            </section>
+            <div class="container">
+                <section class="finder" aria-label="Find a car">
+                    <div class="finder-title"><span>Find your next car</span><span
+                            style="color:#a78a5f;font-size:10px;letter-spacing:.12em">START HERE</span></div>
+                    <div class="finder-grid">
+                        <div class="field"><label for="homeMake">Make</label><select id="homeMake">
+                                <option value="">All makes</option>
+                            </select></div>
+                        <div class="field"><label for="homeType">Body type</label><select id="homeType">
+                                <option value="">All body types</option>
+                                <option>SUV</option>
+                                <option>Sedan</option>
+                                <option>Coupe</option>
+                                <option>Pickup</option>
+                            </select></div>
+                        <div class="field"><label for="homeBudget">Maximum budget</label><select id="homeBudget">
+                                <option value="">Any budget</option>
+                                <option value="15000000">₦15 million</option>
+                                <option value="30000000">₦30 million</option>
+                                <option value="50000000">₦50 million</option>
+                                <option value="80000000">₦80 million</option>
+                            </select></div>
+                        <div class="field"><label for="homeYear">Year from</label><select id="homeYear">
+                                <option value="">Any year</option>
+                                <option>2024</option>
+                                <option>2022</option>
+                                <option>2020</option>
+                                <option>2018</option>
+                            </select></div><button class="button button-dark" onclick="searchFromHome()">Find a car
+                            <span class="arrow">↗</span></button>
+                    </div>
+                </section>
+            </div>
+            <section class="section" id="inventory">
+                <div class="container">
+                    <div class="section-head">
+                        <div>
+                            <div class="kicker">Selected for you</div>
+                            <h2>Featured automobiles</h2>
+                        </div><a class="text-link" href="#catalogue" onclick="showPage('catalogue')">View all cars
+                            <span>↗</span></a>
+                    </div>
+                    <div class="car-grid" id="featuredGrid"></div>
+                    <div class="all-inventory"><a class="button button-dark" href="#catalogue"
+                            onclick="showPage('catalogue')">Explore all inventory <span class="arrow">↗</span></a></div>
+                </div>
+            </section>
+            <section class="section editorial" id="approach">
+                <div class="container editorial-grid">
+                    <div class="editorial-photo"><img loading="lazy"
+                            src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
+                            alt="Elegant modern performance car viewed from the front"></div>
+                    <div class="editorial-copy">
+                        <div class="eyebrow">A multi-brand collection</div>
+                        <h2>From a dependable daily drive to your next Mercedes-Benz.</h2>
+                        <p>Compare different makes, models and body styles in one place. Explore the details, check the
+                            price and speak with our team about the car that suits you.</p><a
+                            class="button button-light" href="#contact">Talk to our team <span
+                                class="arrow">↗</span></a>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="container">
+                    <div class="section-head">
+                        <div>
+                            <div class="kicker">The difference</div>
+                            <h2>Confidence at every turn.</h2>
+                        </div>
+                        <p class="muted" style="max-width:360px;font-size:13px;margin:0">A clearer way to explore
+                            vehicles, understand the details and take the next step.</p>
+                    </div>
+                    <div class="benefits">
+                        <div class="benefit"><span class="num">01 / SELECTION</span>
+                            <h3>Considered collection</h3>
+                            <p>Vehicles chosen for quality, value and appeal.</p>
+                        </div>
+                        <div class="benefit"><span class="num">02 / CLARITY</span>
+                            <h3>Details that matter</h3>
+                            <p>Specs and pricing presented without the guesswork.</p>
+                        </div>
+                        <div class="benefit"><span class="num">03 / GUIDANCE</span>
+                            <h3>Personal assistance</h3>
+                            <p>Ask questions and get help finding the right fit.</p>
+                        </div>
+                        <div class="benefit"><span class="num">04 / NEXT STEP</span>
+                            <h3>Simple enquiries</h3>
+                            <p>Contact our team directly when a car feels right.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div id="cataloguePage" class="page">
+            <section class="page-top">
+                <div class="container"><a class="back-link" href="#home" onclick="showPage('home')">← Back to home</a>
+                    <div class="kicker">The collection</div>
+                    <h1>Find your next car.</h1>
+                    <p>Explore our selection by make, budget and body type.</p>
+                </div>
+            </section>
+            <div class="container catalog-layout">
+                <aside class="filter-panel">
+                    <h3>Refine your search</h3>
+                    <div class="field"><label for="catalogSearch">Search</label><input id="catalogSearch"
+                            placeholder="Try Toyota, SUV..." oninput="renderCatalogue()"></div>
+                    <div class="field"><label for="catalogMake">Make</label><select id="catalogMake"
+                            onchange="renderCatalogue()">
+                            <option value="">All makes</option>
+                        </select></div>
+                    <div class="field"><label for="catalogType">Body type</label><select id="catalogType"
+                            onchange="renderCatalogue()">
+                            <option value="">All types</option>
+                            <option>SUV</option>
+                            <option>Sedan</option>
+                            <option>Coupe</option>
+                            <option>Pickup</option>
+                        </select></div>
+                    <div class="field"><label for="catalogBudget">Maximum price</label><select id="catalogBudget"
+                            onchange="renderCatalogue()">
+                            <option value="">Any price</option>
+                            <option value="15000000">₦15 million</option>
+                            <option value="30000000">₦30 million</option>
+                            <option value="50000000">₦50 million</option>
+                            <option value="80000000">₦80 million</option>
+                        </select></div>
+                    <div class="field"><label for="catalogYear">Year from</label><select id="catalogYear"
+                            onchange="renderCatalogue()">
+                            <option value="">Any year</option>
+                            <option value="2024">2024</option>
+                            <option value="2022">2022</option>
+                            <option value="2020">2020</option>
+                            <option value="2018">2018</option>
+                        </select></div><button class="button button-dark" onclick="clearFilters()">Clear
+                        filters</button>
+                </aside>
+                <section>
+                    <div class="catalog-tools"><strong id="resultCount">Vehicles in the collection</strong><select
+                            class="sort-select" id="sortOrder" onchange="renderCatalogue()" aria-label="Sort vehicles">
+                            <option value="featured">Sort: Featured</option>
+                            <option value="priceAsc">Price: Low to high</option>
+                            <option value="priceDesc">Price: High to low</option>
+                            <option value="yearDesc">Newest first</option>
+                        </select></div>
+                    <div class="catalog-grid" id="catalogGrid"></div>
+                </section>
+            </div>
+        </div>
+        <div id="detailPage" class="page">
+            <section class="page-top">
+                <div class="container"><a class="back-link" href="#catalogue" onclick="showPage('catalogue')">← Back to
+                        collection</a>
+                    <div class="kicker">Vehicle details</div>
+                    <h1 id="detailPageTitle">Discover the details.</h1>
+                    <p>Everything you need to know before taking the next step.</p>
+                </div>
+            </section>
+            <div class="container detail-layout">
+                <div>
+                    <div class="gallery-main"><img id="detailImage" src="" alt="Vehicle photograph"></div>
+                    <div class="gallery-thumbs" id="galleryThumbs"></div>
+                </div>
+                <div>
+                    <div class="detail-brand" id="detailMake"></div>
+                    <h2 class="detail-title" id="detailName"></h2>
+                    <div class="detail-price" id="detailPrice"></div>
+                    <div class="detail-note">Indicative listing price · Confirm availability with our team</div>
+                    <div class="detail-actions"><button class="button button-dark" onclick="enquireWhatsApp()">Enquire
+                            on WhatsApp <span class="arrow">↗</span></button><button class="button"
+                            style="border:1px solid #d6d4cd;background:transparent;color:#17231f"
+                            onclick="showToast('Enquiry form coming next — WhatsApp is available now.')">Request a
+                            callback</button></div>
+                    <div class="spec-grid" id="specGrid"></div>
+                    <div class="detail-section">
+                        <h3>About this vehicle</h3>
+                        <p id="detailDescription"></p>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Interested in this car?</h3>
+                        <p>Ask our team about current availability, vehicle history, inspection and next steps. We'll
+                            help you get the information you need.</p>
+                    </div>
+                </div>
+            </div>
+            <section class="section inventory">
+                <div class="container">
+                    <div class="section-head">
+                        <div>
+                            <div class="kicker">Keep exploring</div>
+                            <h2>You may also like</h2>
+                        </div><a class="text-link" href="#catalogue" onclick="showPage('catalogue')">All cars ↗</a>
+                    </div>
+                    <div class="car-grid" id="relatedGrid"></div>
+                </div>
+            </section>
+        </div>
+        <section class="newsletter" id="contact">
+            <div class="container newsletter-inner">
+                <div>
+                    <div class="kicker">Stay in the know</div>
+                    <h2>Good cars. Good conversations.</h2>
+                    <p>Tell us what you're looking for and our team can help.</p>
+                </div>
+                <form class="newsletter-form"
+                    onsubmit="event.preventDefault();showToast('Thanks — contact form integration can be connected next.');">
+                    <input type="email" placeholder="Your email address" aria-label="Your email address"
+                        required><button class="button button-dark" type="submit">Get in touch ↗</button>
+                </form>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <div class="footer-brand"><a href="#home" class="brand">M&D<span>AUTOS</span></a>
+                        <p>A considered approach to finding your next car. Discover the details, compare your options
+                            and move forward with confidence.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Explore</h4><a href="#home" onclick="showPage('home')">Home</a><a href="#catalogue"
+                            onclick="showPage('catalogue')">All cars</a><a href="#approach"
+                            onclick="showPage('home')">Our approach</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Assistance</h4><a href="#contact">Speak to our team</a><a href="#contact">Vehicle
+                            enquiries</a><a href="#contact">Visit us</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4><a href="#contact">Lagos, Nigeria</a><a href="#contact">WhatsApp enquiries</a><a
+                            href="#contact">Email our team</a>
+                    </div>
+                </div>
+                <div class="footer-bottom"><span>© 2026 M&D Autos. Concept website preview.</span><span>Vehicle listings
+                        and prices are illustrative sample data.</span></div>
+            </div>
+        </footer>
+        <button class="wa-float" aria-label="WhatsApp enquiry" onclick="enquireWhatsApp()">✆</button>
+        <div class="toast" id="toast" role="status"></div>
+    </main>
+    <script>
+        const cars = [
+            { id: 1, make: 'Mercedes-Benz', model: 'GLE 450 4MATIC', year: 2024, price: 78500000, km: 28500, trans: 'Automatic', fuel: 'Petrol', type: 'SUV', drive: 'AWD', condition: 'Foreign used', featured: true, color: 'Black', img: 'https://images.unsplash.com/photo-1669234226129-8ede05b40eff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', gallery: ['https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1100&q=82', 'https://images.unsplash.com/photo-1618843479614-6b6d6e6a2f09?auto=format&fit=crop&w=1100&q=82'], desc: 'A refined premium SUV with a commanding road presence, a comfortable cabin and confident all-weather capability. Contact the team to confirm specification, vehicle history and availability.' },
+            { id: 2, make: 'Toyota', model: 'Land Cruiser Prado', year: 2021, price: 68500000, km: 41200, trans: 'Automatic', fuel: 'Petrol', type: 'SUV', drive: '4WD', condition: 'Foreign used', featured: true, color: 'White', img: 'https://landcruiserprado.com/wp-content/uploads/823993.jpg', gallery: ['https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1100&q=82', 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1100&q=82'], desc: 'A versatile SUV built for everyday comfort and longer journeys. Explore its space, elevated driving position and go-anywhere character. Ask us for the full specification and inspection details.' },
+            { id: 3, make: 'BMW', model: '330i M Sport', year: 2022, price: 42500000, km: 31800, trans: 'Automatic', fuel: 'Petrol', type: 'Sedan', drive: 'RWD', condition: 'Foreign used', featured: true, color: 'Blue', img: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1100&q=82', gallery: ['https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1100&q=82', 'https://images.unsplash.com/photo-1556189250-72ba954cfc2b?auto=format&fit=crop&w=1100&q=82'], desc: 'A sporty executive sedan that balances precise handling with daily usability. A considered choice for drivers who want an engaging drive and a clean, modern cabin.' },
+            { id: 4, make: 'Lexus', model: 'RX 350', year: 2020, price: 39500000, km: 53700, trans: 'Automatic', fuel: 'Petrol', type: 'SUV', drive: 'AWD', condition: 'Foreign used', featured: true, color: 'Silver', img: 'https://images.unsplash.com/photo-1664427356346-c31b46248e71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', gallery: ['https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1100&q=82', 'https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=1100&q=82'], desc: 'A premium SUV known for its comfort-led character and understated design. Get in touch to confirm trim, condition, service history and availability.' },
+            { id: 5, make: 'Honda', model: 'Accord Touring', year: 2021, price: 24800000, km: 46200, trans: 'Automatic', fuel: 'Petrol', type: 'Sedan', drive: 'FWD', condition: 'Foreign used', featured: false, color: 'Grey', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3iAltokMc3W4DE4jORlEZolguuC12lOkHTP8Kb26sSaQ-zS3HcfEc9O4&s=10', gallery: ['https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=1100&q=82', 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1100&q=82'], desc: 'A practical, well-equipped sedan with generous cabin space and a comfortable ride. Reach out to request the full equipment list and inspection information.' },
+            { id: 6, make: 'Toyota', model: 'Hilux Double Cab', year: 2020, price: 36500000, km: 58600, trans: 'Automatic', fuel: 'Diesel', type: 'Pickup', drive: '4WD', condition: 'Foreign used', featured: false, color: 'White', img: 'https://images.unsplash.com/photo-1559416523-140ddc3d238c?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', gallery: ['https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&w=1100&q=82', 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1100&q=82'], desc: 'A hardworking double-cab pickup suited to demanding work and everyday versatility. Contact us for condition, maintenance and inspection details.' },
+            { id: 7, make: 'Audi', model: 'A5 Sportback', year: 2021, price: 38000000, km: 35400, trans: 'Automatic', fuel: 'Petrol', type: 'Coupe', drive: 'AWD', condition: 'Foreign used', featured: false, color: 'Black', img: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=1100&q=82', gallery: ['https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=1100&q=82', 'https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=1100&q=82'], desc: 'A sleek fastback silhouette with a premium interior and everyday practicality. Enquire for exact specification, condition report and availability.' }
+        ];
+        const money = n => '₦' + n.toLocaleString('en-NG'); const fmtKm = n => n.toLocaleString('en-NG') + ' km'; let currentCar = null;
+        function card(c) { return `<article class="car-card" tabindex="0" role="button" aria-label="View ${c.year} ${c.make} ${c.model}" onclick="openDetail(${c.id})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDetail(${c.id})}"><div class="car-image"><img loading="lazy" src="${c.img}" alt="${c.year} ${c.make} ${c.model}" onerror="this.style.opacity='.2'"><span class="tag">${c.condition}</span><button class="heart" aria-label="Save ${c.model}" onclick="event.stopPropagation();this.classList.toggle('saved');this.textContent=this.classList.contains('saved')?'♥':'♡'">♡</button></div><div class="car-info"><div class="car-make">${c.year} · ${c.make}</div><h3>${c.model}</h3><div class="car-specs"><span>↗ ${fmtKm(c.km)}</span><span>⚙ ${c.trans}</span><span>◈ ${c.type}</span></div><div class="car-bottom"><div class="price">${money(c.price)}</div><div class="details-link">View car <span>↗</span></div></div></div></article>` }
+        function renderFeatured() { document.getElementById('featuredGrid').innerHTML = cars.filter(c => c.featured).slice(0, 3).map(card).join('') }
+        function renderCatalogue() { let q = (document.getElementById('catalogSearch')?.value || '').toLowerCase().trim(), make = document.getElementById('catalogMake')?.value || '', type = document.getElementById('catalogType')?.value || '', budget = Number(document.getElementById('catalogBudget')?.value || 0), year = Number(document.getElementById('catalogYear')?.value || 0), sort = document.getElementById('sortOrder')?.value || 'featured'; let list = cars.filter(c => (!q || `${c.make} ${c.model} ${c.type} ${c.year}`.toLowerCase().includes(q)) && (!make || c.make === make) && (!type || c.type === type) && (!budget || c.price <= budget) && (!year || c.year >= year)); if (sort === 'priceAsc') list.sort((a, b) => a.price - b.price); if (sort === 'priceDesc') list.sort((a, b) => b.price - a.price); if (sort === 'yearDesc') list.sort((a, b) => b.year - a.year); document.getElementById('resultCount').textContent = `${list.length} vehicle${list.length === 1 ? '' : 's'} found`; document.getElementById('catalogGrid').innerHTML = list.length ? list.map(card).join('') : '<div class="empty"><h3>No cars found just yet</h3><p class="muted">Try adjusting your filters to see more vehicles.</p><button class="button button-dark" onclick="clearFilters()">Clear filters</button></div>' }
+        function fillMakes() { const makes = [...new Set(cars.map(c => c.make))].sort();['homeMake', 'catalogMake'].forEach(id => { const s = document.getElementById(id); makes.forEach(m => { let o = document.createElement('option'); o.value = m; o.textContent = m; s.appendChild(o) }) }) }
+        function clearFilters() { ['catalogSearch', 'catalogMake', 'catalogType', 'catalogBudget', 'catalogYear'].forEach(id => document.getElementById(id).value = ''); document.getElementById('sortOrder').value = 'featured'; renderCatalogue() }
+        function searchFromHome() { document.getElementById('catalogMake').value = document.getElementById('homeMake').value; document.getElementById('catalogType').value = document.getElementById('homeType').value; document.getElementById('catalogBudget').value = document.getElementById('homeBudget').value; document.getElementById('catalogYear').value = document.getElementById('homeYear').value; showPage('catalogue'); renderCatalogue() }
+        function showPage(which) { document.getElementById('homePage').classList.toggle('active', which === 'home'); document.getElementById('cataloguePage').classList.toggle('active', which === 'catalogue'); document.getElementById('detailPage').classList.toggle('active', which === 'detail'); if (which === 'catalogue') renderCatalogue(); toggleMenu(false); window.scrollTo({ top: 0, behavior: 'smooth' }) }
+        function openDetail(id) { const c = cars.find(x => x.id === id); if (!c) return; currentCar = c; document.getElementById('detailPageTitle').textContent = c.model; document.getElementById('detailMake').textContent = `${c.year} · ${c.make} · ${c.condition}`; document.getElementById('detailName').textContent = c.model; document.getElementById('detailPrice').textContent = money(c.price); document.getElementById('detailImage').src = /* c.gallery[0] || */ c.img; document.getElementById('detailImage').alt = `${c.year} ${c.make} ${c.model}`; document.getElementById('galleryThumbs').innerHTML = (c.gallery || [c.img]).map((src, i) => `<button class="${i === 0 ? 'selected' : ''}" aria-label="View photo ${i + 1}" onclick="changePhoto(this,'${src}')"><img src="${src}" alt=""></button>`).join(''); document.getElementById('specGrid').innerHTML = [['Year', c.year], ['Mileage', fmtKm(c.km)], ['Transmission', c.trans], ['Fuel', c.fuel], ['Body type', c.type], ['Drivetrain', c.drive], ['Condition', c.condition], ['Exterior', c.color]].map(([k, v]) => `<div class="spec"><span>${k}</span><strong>${v}</strong></div>`).join(''); document.getElementById('detailDescription').textContent = c.desc; document.getElementById('relatedGrid').innerHTML = cars.filter(x => x.id !== c.id).slice(0, 3).map(card).join(''); showPage('detail') }
+        function changePhoto(btn, src) { document.getElementById('detailImage').src = src; document.querySelectorAll('.gallery-thumbs button').forEach(b => b.classList.remove('selected')); btn.classList.add('selected') }
+        function enquireWhatsApp() { if (!currentCar) { showToast('Choose a car to start a vehicle enquiry.'); showPage('catalogue'); return } const msg = encodeURIComponent(`Hello M&D Autos, I'm interested in the ${currentCar.year} ${currentCar.make} ${currentCar.model} listed at ${money(currentCar.price)}. Could you share more details and confirm availability?`); window.open('https://wa.me/9110303745?text=' + msg, '_blank', 'noopener,noreferrer') }
+        function toggleMenu(open) { document.getElementById('mobileNav').classList.toggle('open', open); document.body.style.overflow = open ? 'hidden' : '' }
+        let toastTimer; function showToast(message) { const t = document.getElementById('toast'); t.textContent = message; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2800) }
+        fillMakes(); renderFeatured(); renderCatalogue();
+        // Treat anchor navigation as in-app page navigation for this prototype.
+        document.querySelectorAll('a[href="#catalogue"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); showPage('catalogue') })); document.querySelectorAll('a[href="#home"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); showPage('home') }));
+    </script>
+</body>
+
+</html>
