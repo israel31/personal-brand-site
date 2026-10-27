@@ -2,282 +2,2272 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NextBranch Systems | Future-Forward Product Solutions</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f7f5ff">
+    <meta name="description"
+        content="Learn how to build your first website using AI, even if you have never written code. Get the beginner-friendly PDF guide and video tutorial from NextBranch Academy for ₦1,500.">
+
+    <title>Build Your First Website Using AI | NextBranch Academy</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --purple: #7138e8;
+            --purple-dark: #5121bb;
+            --purple-light: #eee7ff;
+            --ink: #211a32;
+            --muted: #726c80;
+            --background: #f8f6fc;
+            --surface: #ffffff;
+            --border: #e8e2f0;
+            --green: #17834f;
+            --red: #c43838;
+            --radius: 22px;
+            --shadow: 0 18px 55px rgba(53, 30, 91, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--ink);
+            font-family: "DM Sans", sans-serif;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button:focus-visible,
+        input:focus-visible,
+        a:focus-visible {
+            outline: 3px solid rgba(113, 56, 232, 0.35);
+            outline-offset: 3px;
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin-inline: auto;
+        }
+
+        .announcement {
+            padding: 9px 16px;
+            background: var(--purple-dark);
+            color: #fff;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        header {
+            position: sticky;
+            z-index: 20;
+            top: 0;
+            background: rgba(248, 246, 252, 0.92);
+            border-bottom: 1px solid rgba(232, 226, 240, 0.8);
+            backdrop-filter: blur(16px);
+        }
+
+        .navbar {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            color: var(--ink);
+            text-decoration: none;
+            font-family: "Manrope", sans-serif;
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: -0.6px;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 39px;
+            height: 39px;
+            place-items: center;
+            border-radius: 13px;
+            background: var(--purple);
+            color: #fff;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .brand span:last-child {
+            display: block;
+        }
+
+        .brand small {
+            display: block;
+            margin-top: -4px;
+            color: var(--muted);
+            font-family: "DM Sans", sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .nav-link {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            color: var(--purple);
+        }
+
+        .button {
+            display: inline-flex;
+            min-height: 49px;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: 0;
+            border-radius: 13px;
+            background: var(--purple);
+            color: #fff;
+            cursor: pointer;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            background: var(--purple-dark);
+        }
+
+        .button:disabled {
+            cursor: not-allowed;
+            opacity: 0.58;
+        }
+
+        .button-secondary {
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--ink);
+        }
+
+        .button-secondary:hover:not(:disabled) {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+        }
+
+        .button-small {
+            min-height: 42px;
+            padding: 9px 15px;
+            font-size: 13px;
+        }
+
+        .button-full {
+            width: 100%;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 82px 0 74px;
+            background:
+                radial-gradient(ellipse at 10% 5%, rgba(205, 185, 255, 0.35), transparent 34%),
+                radial-gradient(ellipse at 95% 65%, rgba(230, 214, 255, 0.4), transparent 32%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: center;
+            gap: 65px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding: 7px 12px;
+            border: 1px solid #e1d5ff;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.7);
+            color: var(--purple-dark);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--purple);
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Manrope", sans-serif;
+            letter-spacing: -1.3px;
+            line-height: 1.15;
+        }
+
+        h1 {
+            max-width: 650px;
+            margin-bottom: 22px;
+            font-size: clamp(38px, 5.2vw, 64px);
+            font-weight: 800;
+        }
+
+        .highlight {
+            color: var(--purple);
+        }
+
+        .hero-description {
+            max-width: 540px;
+            margin-bottom: 25px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .hero-points {
+            display: grid;
+            gap: 11px;
+            margin: 0 0 28px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .hero-points li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #494155;
+            font-size: 14px;
+        }
+
+        .check-icon {
+            display: grid;
+            flex: 0 0 22px;
+            width: 22px;
+            height: 22px;
+            margin-top: 1px;
+            place-items: center;
+            border-radius: 50%;
+            background: #e6f6ec;
+            color: var(--green);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .price-note {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .price-note strong {
+            display: block;
+            color: var(--ink);
+            font-size: 15px;
+        }
+
+        .hero-visual {
+            position: relative;
+            padding: 20px;
+        }
+
+        .mockup {
+            position: relative;
+            overflow: hidden;
+            padding: 27px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            background: linear-gradient(145deg, #ffffff, #f0eaff);
+            box-shadow: 0 30px 80px rgba(76, 40, 145, 0.15);
+            transform: rotate(1deg);
+        }
+
+        .mockup-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .mockup-badge {
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            letter-spacing: 0;
+        }
+
+        .book-cover {
+            display: flex;
+            min-height: 300px;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 28px;
+            border-radius: 17px;
+            background:
+                radial-gradient(circle at 90% 15%, rgba(255, 255, 255, 0.2), transparent 35%),
+                linear-gradient(145deg, #7138e8, #43208d);
+            color: #fff;
+        }
+
+        .book-cover .cover-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .book-cover h2 {
+            max-width: 340px;
+            margin: 20px 0;
+            font-size: clamp(27px, 3vw, 38px);
+            letter-spacing: -1.2px;
+        }
+
+        .cover-lines {
+            display: grid;
+            gap: 7px;
+            margin-top: 18px;
+        }
+
+        .cover-lines span {
+            height: 5px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, 0.42);
+        }
+
+        .cover-lines span:nth-child(1) {
+            width: 78%;
+        }
+
+        .cover-lines span:nth-child(2) {
+            width: 58%;
+        }
+
+        .cover-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .mockup-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .mockup-bottom strong {
+            font-size: 14px;
+        }
+
+        .mockup-bottom span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .floating-note {
+            position: absolute;
+            right: -1px;
+            bottom: 0;
+            padding: 14px 17px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: #fff;
+            box-shadow: var(--shadow);
+            font-size: 12px;
+        }
+
+        .floating-note strong {
+            display: block;
+            color: var(--purple-dark);
+            font-size: 15px;
+        }
+
+        .trust-strip {
+            padding: 21px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: #fff;
+        }
+
+        .trust-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 22px 45px;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .trust-items span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section {
+            padding: 86px 0;
+        }
+
+        .section-heading {
+            max-width: 660px;
+            margin: 0 auto 43px;
+            text-align: center;
+        }
+
+        .section-kicker {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin-bottom: 17px;
+            font-size: clamp(30px, 4vw, 44px);
+            font-weight: 800;
+        }
+
+        .section-heading p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 19px;
+        }
+
+        .feature-card {
+            padding: 27px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: #fff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            display: grid;
+            width: 47px;
+            height: 47px;
+            margin-bottom: 21px;
+            place-items: center;
+            border-radius: 14px;
+            background: var(--purple-light);
+            font-size: 22px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 11px;
+            font-size: 19px;
+            letter-spacing: -0.5px;
+        }
+
+        .feature-card p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .learn-section {
+            background: #fff;
+        }
+
+        .learn-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            align-items: start;
+            gap: 70px;
+        }
+
+        .learn-intro h2 {
+            font-size: clamp(30px, 4vw, 43px);
+        }
+
+        .learn-intro p {
+            color: var(--muted);
+            line-height: 1.85;
+        }
+
+        .learn-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .learn-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: var(--background);
+        }
+
+        .learn-item .check-icon {
+            flex-shrink: 0;
+        }
+
+        .learn-item strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 14px;
+        }
+
+        .learn-item p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .purchase-section {
+            padding: 85px 0;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(202, 179, 255, 0.3), transparent 50%),
+                var(--background);
+        }
+
+        .purchase-card {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 45px;
+            padding: 38px;
+            border: 1px solid var(--border);
+            border-radius: 27px;
+            background: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        .purchase-copy h2 {
+            margin-bottom: 14px;
+            font-size: clamp(29px, 3.5vw, 40px);
+        }
+
+        .purchase-copy>p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .included-list {
+            display: grid;
+            gap: 12px;
+            margin: 24px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .included-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .purchase-form {
+            padding: 25px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: #fcfbff;
+        }
+
+        .purchase-form h3 {
+            margin-bottom: 6px;
+            font-size: 22px;
+            letter-spacing: -0.6px;
+        }
+
+        .form-description {
+            margin-bottom: 23px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .input {
+            display: block;
+            width: 100%;
+            min-height: 49px;
+            padding: 12px 14px;
+            border: 1px solid #ddd5e8;
+            border-radius: 11px;
+            background: #fff;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .input:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px rgba(113, 56, 232, 0.1);
+        }
+
+        .input::placeholder {
+            color: #aaa3b5;
+        }
+
+        .consent-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            margin: 15px 0 19px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.65;
+        }
+
+        .consent-row input {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            margin-top: 3px;
+            accent-color: var(--purple);
+        }
+
+        .consent-row label {
+            cursor: pointer;
+        }
+
+        .form-footnote {
+            margin: 13px 0 0;
+            color: var(--muted);
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .status-message {
+            display: none;
+            margin: 0 0 17px;
+            padding: 12px 14px;
+            border-radius: 11px;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .status-message.visible {
+            display: block;
+        }
+
+        .status-message.info {
+            border: 1px solid #ddd1ff;
+            background: #f2edff;
+            color: #4e2a9e;
+        }
+
+        .status-message.success {
+            border: 1px solid #bce8cc;
+            background: #edf9f1;
+            color: #17663d;
+        }
+
+        .status-message.error {
+            border: 1px solid #f0c7c7;
+            background: #fff0f0;
+            color: #a32929;
+        }
+
+        .access-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .access-card {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 35px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        .access-card h2 {
+            margin-bottom: 12px;
+            font-size: clamp(27px, 4vw, 37px);
+        }
+
+        .access-card>p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .access-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .access-form .form-group {
+            margin-bottom: 0;
+        }
+
+        .code-form {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .code-form.visible {
+            display: block;
+        }
+
+        .code-form .button {
+            margin-top: 10px;
+        }
+
+        .access-hint {
+            margin-top: 15px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .course-content {
+            display: none;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .course-content.visible {
+            display: block;
+        }
+
+        .course-content h3 {
+            margin-bottom: 8px;
+            font-size: 23px;
+        }
+
+        .course-content>p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            margin: 22px 0;
+            border-radius: 16px;
+            background: #1e1730;
+            aspect-ratio: 16 / 9;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .course-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .security-note {
+            margin-top: 18px;
+            padding: 13px 15px;
+            border-radius: 12px;
+            background: var(--background);
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .faq-section {
+            padding: 85px 0;
+        }
+
+        .faq-list {
+            display: grid;
+            max-width: 760px;
+            gap: 12px;
+            margin: 0 auto;
+        }
+
+        details {
+            padding: 19px 21px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #fff;
+        }
+
+        summary {
+            position: relative;
+            padding-right: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            list-style: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            position: absolute;
+            right: 0;
+            content: "+";
+            color: var(--purple);
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        details[open] summary::after {
+            content: "−";
+        }
+
+        details p {
+            margin: 13px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .final-cta {
+            padding: 70px 0;
+            background: var(--purple-dark);
+            color: #fff;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            max-width: 680px;
+            margin: 0 auto 16px;
+            font-size: clamp(30px, 4.5vw, 47px);
+        }
+
+        .final-cta p {
+            max-width: 560px;
+            margin: 0 auto 25px;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 15px;
+        }
+
+        .final-cta .button {
+            background: #fff;
+            color: var(--purple-dark);
+        }
+
+        .final-cta .button:hover:not(:disabled) {
+            background: var(--purple-light);
+        }
+
+        footer {
+            padding: 28px 0;
+            background: #211537;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .footer-brand {
+            color: #fff;
+            font-family: "Manrope", sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .footer-inner p {
+            margin: 0;
+            font-size: 12px;
+        }
+
+        .footer-inner a {
+            text-decoration: none;
+        }
+
+        .footer-inner a:hover {
+            color: #fff;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr 0.85fr;
+                gap: 25px;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero-visual {
+                padding: 10px;
+            }
+
+            .mockup {
+                padding: 17px;
+            }
+
+            .book-cover {
+                min-height: 265px;
+                padding: 22px;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .learn-grid {
+                gap: 35px;
+            }
+
+            .purchase-card {
+                gap: 25px;
+                padding: 26px;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .container {
+                width: min(100% - 30px, 540px);
+            }
+
+            .navbar {
+                min-height: 67px;
+            }
+
+            .brand {
+                font-size: 15px;
+            }
+
+            .brand-mark {
+                width: 35px;
+                height: 35px;
+            }
+
+            .nav-link {
+                display: none;
+            }
+
+            .navbar>.button {
+                min-height: 39px;
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 49px 0 53px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 33px;
+            }
+
+            h1 {
+                font-size: clamp(38px, 10vw, 52px);
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .hero-visual {
+                max-width: 430px;
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .floating-note {
+                right: -3px;
+            }
+
+            .trust-items {
+                gap: 13px 20px;
+                font-size: 12px;
+            }
+
+            .section,
+            .faq-section {
+                padding: 63px 0;
+            }
+
+            .section-heading {
+                margin-bottom: 30px;
+            }
+
+            .section-heading p {
+                font-size: 14px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 13px;
+            }
+
+            .feature-card {
+                padding: 23px;
+            }
+
+            .learn-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .purchase-section {
+                padding: 60px 0;
+            }
+
+            .purchase-card {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 21px;
+            }
+
+            .purchase-form {
+                padding: 19px;
+            }
+
+            .access-section {
+                padding: 60px 0;
+            }
+
+            .access-card {
+                padding: 22px;
+            }
+
+            .access-form {
+                grid-template-columns: 1fr;
+            }
+
+            .access-form .button {
+                width: 100%;
+            }
+
+            .course-actions {
+                flex-direction: column;
+            }
+
+            .course-actions .button {
+                width: 100%;
+            }
+
+            .final-cta {
+                padding: 58px 0;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
-
-  <!-- NAVIGATION -->
-  <header class="navbar">
-    <div class="container nav-container">
-      <div class="logo">NextBranch<span>Systems</span></div>
-
-      <!-- Hamburger Menu Icon -->
-      <button class="mobile-nav-toggle" aria-label="Menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-
-      <nav class="nav-menu">
-        <ul class="nav-links">
-          <li><a href="#products">Our Products</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
-        </ul>
-      </nav>
+    <div class="announcement">
+        Start building with AI — beginner-friendly, practical and affordable.
     </div>
-  </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <span class="badge">Innovation at Scale</span>
-        <h1>We build digital ecosystems for the <span>modern world.</span></h1>
-        <p>NextBranch Systems is a product solutions platform powering industry-leading tools for identity, payments,
-          and automation.</p>
-        <div class="hero-btns">
-          <a href="#products" class="btn btn-primary">View Portfolio</a>
-          <a href="#about" class="btn btn-secondary">Learn Our Story</a>
+    <header>
+        <div class="container navbar">
+            <a class="brand" href="#home" aria-label="NextBranch Academy home">
+                <span class="brand-mark" aria-hidden="true">N</span>
+                <span>
+                    NextBranch
+                    <small>Academy</small>
+                </span>
+            </a>
+
+            <a class="nav-link" href="#what-you-learn">What you'll learn</a>
+
+            <a class="button button-small" href="#purchase">
+                Get the guide · ₦1,500
+            </a>
         </div>
-      </div>
-      <div class="hero-image">
-        <!-- Replace this URL with your actual banner image -->
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426"
-          alt="Digital Solutions Dashboard">
-        <div class="hero-image-overlay"></div>
-      </div>
-    </div>
-    <div class="hero-bg-blur"></div>
-  </section>
+    </header>
 
-  <!-- STATS / WHAT WE DO -->
-  <section class="features">
-    <div class="container">
-      <div class="section-header">
-        <h2>Core Capabilities</h2>
-        <p>Specialized engineering for complex digital challenges.</p>
-      </div>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="icon">🚀</div>
-          <h3>Product Engineering</h3>
-          <p>Turning visionary concepts into scalable, production-ready applications.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">🔐</div>
-          <h3>Identity & Access</h3>
-          <p>Next-gen security protocols and seamless verification systems.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">⚙️</div>
-          <h3>Process Automation</h3>
-          <p>Optimizing workflows through intelligent software and smart integration.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div>
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        For complete beginners
+                    </div>
 
-  <!-- PRODUCTS SECTION -->
-  <section id="products" class="products">
-    <div class="container">
-      <div class="section-header">
-        <h2>Our Ecosystem</h2>
-        <p>Independent platforms powered by NextBranch core technology.</p>
-      </div>
+                    <h1>
+                        Build Your First Website
+                        <span class="highlight">Using AI.</span>
+                    </h1>
 
-      <div class="product-grid">
+                    <p class="hero-description">
+                        You don't need to be an experienced programmer to start building
+                        websites. Learn how to use AI tools to create your first website
+                        step by step, even if you're starting from zero.
+                    </p>
 
-        <!-- GateKeeper -->
-        <div class="product-card reverse">
-          <div class="product-info">
-            <div class="product-tag">Access Gating</div>
-            <h4>GateKeeper by NextBranch</h4>
-            <p>A smart form-based platform for collecting data, processing payments, and controlling access to digital
-              and physical experiences.</p>
-            <a href="https://gatekeeper.gt.tc" target="_blank" class="product-link">Visit GateKeeper →</a>
-          </div>
-          <div class="product-visual gatekeeper-bg"></div>
-        </div>
+                    <ul class="hero-points">
+                        <li>
+                            <span class="check-icon" aria-hidden="true">✓</span>
+                            No previous coding experience required.
+                        </li>
+                        <li>
+                            <span class="check-icon" aria-hidden="true">✓</span>
+                            Learn with a beginner-friendly PDF and video tutorial.
+                        </li>
+                        <li>
+                            <span class="check-icon" aria-hidden="true">✓</span>
+                            Pay once. Get access to the learning materials.
+                        </li>
+                    </ul>
 
-        <!-- qTap -->
-        <div class="product-card">
-          <div class="product-info">
-            <div class="product-tag">Payments</div>
-            <h4>qTap</h4>
-            <p>Smart, fast, contactless interactions for everyday use. Revolutionizing how physical meets digital.</p>
-            <a href="https://useqtap.netlify.app" target="_blank" class="product-link">Visit qTap →</a>
-          </div>
-          <div class="product-visual qtap-bg"></div>
-        </div>
+                    <div class="hero-actions">
+                        <a class="button" href="#purchase">
+                            Start learning <span aria-hidden="true">→</span>
+                        </a>
 
-      </div>
-    </div>
-  </section>
+                        <div class="price-note">
+                            One-time payment
+                            <strong>₦1,500</strong>
+                        </div>
+                    </div>
+                </div>
 
-  <!-- ABOUT -->
-  <section id="about" class="about">
-    <div class="container">
-      <div class="about-box">
-        <h3>Building the infrastructure of tomorrow.</h3>
-        <p>We are a product-focused technology company. We don't just build apps; we build scalable solutions that solve
-          friction points for individuals, businesses, and institutions globally.</p>
-      </div>
-    </div>
-  </section>
+                <div class="hero-visual" aria-label="Illustration of the website-building guide">
+                    <div class="mockup">
+                        <div class="mockup-top">
+                            <span>Beginner's guide</span>
+                            <span class="mockup-badge">PDF + Video</span>
+                        </div>
 
-  <!-- CONTACT SECTION -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <div class="contact-grid">
+                        <div class="book-cover">
+                            <div class="cover-label">NextBranch Academy</div>
 
-        <!-- Left Side: Info -->
-        <div class="contact-info">
-          <span class="badge">Contact Us</span>
-          <h2>Let’s build the future <span>together.</span></h2>
-          <p>Have a question about our products or interested in a partnership? Our team is ready to help you scale.</p>
+                            <div>
+                                <h2>Build Your First Website Using AI</h2>
+                                <div class="cover-lines" aria-hidden="true">
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
 
-          <div class="contact-details">
-            <div class="detail-item">
-              <strong>Email</strong>
-              <p>nextbranchsystems@gmail.com</p>
+                            <div class="cover-footer">
+                                <span>START FROM ZERO</span>
+                                <span>01 / YOUR FIRST WEBSITE</span>
+                            </div>
+                        </div>
+
+                        <div class="mockup-bottom">
+                            <strong>Your first practical project</strong>
+                            <span>Beginner friendly</span>
+                        </div>
+                    </div>
+
+                    <div class="floating-note">
+                        <strong>₦1,500</strong>
+                        One-time purchase
+                    </div>
+                </div>
             </div>
-            <!-- <div class="detail-item">
-              <strong>Office</strong>
-              <p>Innovation Hub, Tech District<br>San Francisco, CA</p>
-            </div> -->
-          </div>
-        </div>
+        </section>
 
-        <!-- Right Side: Form -->
-        <div class="contact-form-card">
-          <form id="contact-form" action="https://formspree.io/f/mkojdger" method="POST">
-            <div class="form-group">
-              <label for="name">Full Name</label>
-              <input type="text" id="name" name="name" placeholder="John Doe" required>
+        <section class="trust-strip" aria-label="Course highlights">
+            <div class="container trust-items">
+                <span>✓ Beginner-friendly</span>
+                <span>✓ Learn at your own pace</span>
+                <span>✓ PDF + video</span>
+                <span>✓ One-time payment</span>
             </div>
+        </section>
 
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="john@company.com" required>
+        <section class="section" id="benefits">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-kicker">A practical starting point</span>
+                    <h2>You can start before you know how to code.</h2>
+                    <p>
+                        AI can help you write code, understand errors and turn your ideas
+                        into working websites. This guide helps you learn how to use it
+                        as a beginner.
+                    </p>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">💡</div>
+                        <h3>Understand the basics</h3>
+                        <p>
+                            Learn what a website is made of and how the main pieces work
+                            together, without getting buried in technical jargon.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">🤖</div>
+                        <h3>Work with AI tools</h3>
+                        <p>
+                            Learn how to describe what you want, use AI to generate code
+                            and improve the result through clear instructions.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">🛠️</div>
+                        <h3>Build something practical</h3>
+                        <p>
+                            Follow a guided process that takes you from an idea toward a
+                            real website you can open and test in your browser.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">🔎</div>
+                        <h3>Learn to troubleshoot</h3>
+                        <p>
+                            Discover how to describe problems to AI, review its suggestions
+                            and work through common mistakes instead of giving up.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">🌐</div>
+                        <h3>Explore publishing</h3>
+                        <p>
+                            Get introduced to the process of putting a website online so
+                            other people can access it.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">🚀</div>
+                        <h3>Build your confidence</h3>
+                        <p>
+                            Use your first project as a foundation for learning more,
+                            experimenting and creating additional website projects.
+                        </p>
+                    </article>
+                </div>
             </div>
+        </section>
 
-            <div class="form-group">
-              <label for="product">Interested In</label>
-              <select id="product" name="product">
-                <option value="general">General Inquiry</option>
-                <option value="qtap">qTap Platform</option>
-                <option value="gatekeeper">GateKeeper Security</option>
-                <option value="custom">Custom Engineering</option>
-              </select>
+        <section class="section learn-section" id="what-you-learn">
+            <div class="container learn-grid">
+                <div class="learn-intro">
+                    <span class="section-kicker">Inside the bundle</span>
+                    <h2>Learn by doing, not just watching.</h2>
+                    <p>
+                        The goal isn't simply to ask AI to write code. It's to understand
+                        the process well enough to guide the tool, check its work and
+                        make progress on your own projects.
+                    </p>
+                    <a class="button" href="#purchase">Get the learning bundle</a>
+                </div>
+
+                <div class="learn-list">
+                    <div class="learn-item">
+                        <span class="check-icon" aria-hidden="true">✓</span>
+                        <div>
+                            <strong>Prepare your workspace</strong>
+                            <p>Understand the basic tools you need to begin.</p>
+                        </div>
+                    </div>
+
+                    <div class="learn-item">
+                        <span class="check-icon" aria-hidden="true">✓</span>
+                        <div>
+                            <strong>Describe your website idea</strong>
+                            <p>Give AI useful instructions instead of vague prompts.</p>
+                        </div>
+                    </div>
+
+                    <div class="learn-item">
+                        <span class="check-icon" aria-hidden="true">✓</span>
+                        <div>
+                            <strong>Create and review your files</strong>
+                            <p>Learn about HTML, CSS and JavaScript in context.</p>
+                        </div>
+                    </div>
+
+                    <div class="learn-item">
+                        <span class="check-icon" aria-hidden="true">✓</span>
+                        <div>
+                            <strong>Test and improve your website</strong>
+                            <p>Preview the result, identify issues and ask AI for fixes.</p>
+                        </div>
+                    </div>
+
+                    <div class="learn-item">
+                        <span class="check-icon" aria-hidden="true">✓</span>
+                        <div>
+                            <strong>Take the next step</strong>
+                            <p>Understand the basics of publishing your work online.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..."
-                required></textarea>
+        <section class="purchase-section" id="purchase">
+            <div class="container">
+                <div class="purchase-card">
+                    <div class="purchase-copy">
+                        <span class="section-kicker">Your next step starts here</span>
+                        <h2>Get the guide and start building.</h2>
+
+                        <p>
+                            Get the beginner's PDF guide and its accompanying video
+                            tutorial for one affordable payment.
+                        </p>
+
+                        <ul class="included-list">
+                            <li>
+                                <span class="check-icon" aria-hidden="true">✓</span>
+                                <span><strong>PDF guide</strong> — follow the written learning material.</span>
+                            </li>
+                            <li>
+                                <span class="check-icon" aria-hidden="true">✓</span>
+                                <span><strong>Video tutorial</strong> — follow the practical walkthrough.</span>
+                            </li>
+                            <li>
+                                <span class="check-icon" aria-hidden="true">✓</span>
+                                <span><strong>Private PDF access</strong> — retrieve the guide after verifying your
+                                    purchase.</span>
+                            </li>
+                            <li>
+                                <span class="check-icon" aria-hidden="true">✓</span>
+                                <span><strong>Learn at your own pace</strong> — return to the access section when you
+                                    need your materials.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <form class="purchase-form" id="purchaseForm">
+                        <h3>Get started today</h3>
+                        <p class="form-description">
+                            Enter your email before proceeding to secure payment.
+                        </p>
+
+                        <div class="status-message" id="paymentStatus" role="status" aria-live="polite"></div>
+
+                        <div class="form-group">
+                            <label for="purchaseEmail">Email address</label>
+                            <input class="input" id="purchaseEmail" name="email" type="email"
+                                placeholder="you@example.com" autocomplete="email" maxlength="254" required>
+                        </div>
+
+                        <div class="consent-row">
+                            <input id="marketingOptIn" name="marketing_opt_in" type="checkbox" value="true">
+                            <label for="marketingOptIn">
+                                I would like to receive occasional learning tips, product
+                                updates and offers from NextBranch Academy. This is optional
+                                and does not affect my purchase.
+                            </label>
+                        </div>
+
+                        <button class="button button-full" id="payButton" type="submit">
+                            Pay ₦1,500 securely <span aria-hidden="true">→</span>
+                        </button>
+
+                        <p class="form-footnote">
+                            You'll be redirected to Paystack to complete your payment.
+                        </p>
+                    </form>
+                </div>
             </div>
+        </section>
 
-            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
-          </form>
+        <section class="access-section" id="access">
+            <div class="container">
+                <div class="access-card">
+                    <span class="section-kicker">Already purchased?</span>
+                    <h2>Access your learning materials.</h2>
 
-          <!-- Success State (Hidden by default) -->
-          <div id="form-success" class="form-success-msg" style="display: none;">
-            <div class="success-icon">✓</div>
-            <h3>Message Sent!</h3>
-            <p>Thanks for reaching out. A member of our team will contact you shortly.</p>
-          </div>
+                    <p>
+                        Enter the email address you used for payment. We'll send you a
+                        one-time verification code if a completed purchase is associated
+                        with that email.
+                    </p>
+
+                    <div class="status-message" id="accessStatus" role="status" aria-live="polite"></div>
+
+                    <form class="access-form" id="requestCodeForm">
+                        <div class="form-group">
+                            <label for="accessEmail">Purchase email address</label>
+                            <input class="input" id="accessEmail" name="email" type="email"
+                                placeholder="you@example.com" autocomplete="email" maxlength="254" required>
+                        </div>
+
+                        <button class="button" id="requestCodeButton" type="submit">
+                            Send access code
+                        </button>
+                    </form>
+
+                    <form class="code-form" id="verifyCodeForm">
+                        <div class="form-group">
+                            <label for="accessCode">Six-digit verification code</label>
+                            <input class="input" id="accessCode" name="code" type="text" inputmode="numeric"
+                                autocomplete="one-time-code" pattern="[0-9]{6}" minlength="6" maxlength="6"
+                                placeholder="123456" required>
+                        </div>
+
+                        <button class="button button-full" id="verifyCodeButton" type="submit">
+                            Verify and access materials
+                        </button>
+
+                        <p class="access-hint">
+                            Check your inbox, including your spam or junk folder. Codes
+                            expire, so use the latest code you requested.
+                        </p>
+                    </form>
+
+                    <div class="course-content" id="courseContent">
+                        <h3>Your learning materials are ready.</h3>
+                        <p>
+                            Start with the video walkthrough, then use the PDF guide as
+                            your reference while practising.
+                        </p>
+
+                        <div class="video-wrapper" id="videoWrapper">
+                            <p class="sr-only">Your course video will appear here after access is verified.</p>
+                        </div>
+
+                        <div class="course-actions">
+                            <a class="button" id="pdfButton" href="#access" target="_blank" rel="noopener noreferrer">
+                                Open PDF guide <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button class="button button-secondary" id="returnToVideoButton" type="button">
+                                Return to video
+                            </button>
+                        </div>
+
+                        <div class="security-note">
+                            Your PDF link is temporary for security. If it expires, request
+                            a new access code using your purchase email to get fresh access.
+                            Keep your access code and PDF link private.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-kicker">Frequently asked questions</span>
+                    <h2>Before you get started</h2>
+                    <p>Here are answers to common questions about the learning bundle.</p>
+                </div>
+
+                <div class="faq-list">
+                    <details>
+                        <summary>Do I need to know how to code already?</summary>
+                        <p>
+                            No previous coding experience is required. The material is
+                            intended to help beginners get started. You'll still need to
+                            practise and follow the steps carefully.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>What do I receive after payment?</summary>
+                        <p>
+                            You receive access to the PDF guide and the accompanying video
+                            tutorial after your payment has been verified.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>How do I access my materials later?</summary>
+                        <p>
+                            Return to the access section on this page and enter the same
+                            email address you used for your purchase. Follow the emailed
+                            verification instructions to access your materials.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>Is this a subscription?</summary>
+                        <p>
+                            No. The listed price is a one-time payment of ₦1,500 for this
+                            learning bundle.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>Do I need to pay for AI tools?</summary>
+                        <p>
+                            The price of this bundle does not include subscriptions to
+                            third-party AI tools, hosting services or domain names. Whether
+                            you need to pay for any of those depends on the tools and
+                            services you choose to use.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>Can AI build a perfect website automatically?</summary>
+                        <p>
+                            AI can speed up website creation, but it can also make mistakes.
+                            You'll learn to review the output, test your website and ask
+                            for corrections when needed.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta">
+            <div class="container">
+                <h2>Your first website can start with one small step.</h2>
+                <p>
+                    Learn the process, follow the tutorial and start turning your ideas
+                    into real projects.
+                </p>
+                <a class="button" href="#purchase">Get the guide for ₦1,500</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-brand">NextBranch Academy</div>
+            <p>Practical learning for your next step.</p>
+            <p>© <span id="currentYear"></span> NextBranch. All rights reserved.</p>
         </div>
+    </footer>
 
-      </div>
-    </div>
-  </section>
+    <script>
+        "use strict";
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <!-- Brand Info -->
-        <div class="footer-col footer-brand-col">
-          <div class="logo footer-logo">NextBranch<span>Systems</span></div>
-          <p class="footer-description">
-            Powering industry-leading digital ecosystems for identity, payments, and process automation.
-          </p>
-        </div>
+        /*
+          NEXTBRANCH ACADEMY
+          Frontend payment and course-access flow.
+    
+          Required Netlify Functions:
+          1. initialize-academy-payment
+          2. verify-academy-payment
+          3. request-academy-access
+          4. verify-academy-access
+    
+          All payment verification and privileged database operations must
+          happen on the server. Never place Paystack secret keys, Supabase
+          secret/service-role keys, or Resend API keys in this file.
+        */
 
-        <!-- Quick Navigation -->
-        <div class="footer-col">
-          <h4 class="footer-heading">Navigation</h4>
-          <ul class="footer-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#products">Our Products</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
+        const API = {
+            initializePayment: "/.netlify/functions/initialize-academy-payment",
+            verifyPayment: "/.netlify/functions/verify-academy-payment",
+            requestAccess: "/.netlify/functions/request-academy-access",
+            verifyAccess: "/.netlify/functions/verify-academy-access"
+        };
 
-        <!-- Ecosystem Products -->
-        <div class="footer-col">
-          <h4 class="footer-heading">Ecosystem</h4>
-          <ul class="footer-links">
-            <li>
-              <a href="https://useqtap.netlify.app" target="_blank" rel="noopener">
-                qTap Platform
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="external-icon">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a href="https://gatekeeper.gt.tc" target="_blank" rel="noopener">
-                GateKeeper Security
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="external-icon">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-              </a>
-            </li>
-            <li><a href="#contact">Custom Engineering</a></li>
-          </ul>
-        </div>
+        const PRODUCT = {
+            price: 1500,
+            currency: "NGN"
+        };
 
-        <!-- Contact & System Status -->
-        <div class="footer-col">
-          <h4 class="footer-heading">Get in Touch</h4>
-          <p class="footer-contact-email"><a href="mailto:nextbranchsystems@gmail.com">nextbranchsystems@gmail.com</a>
-          </p>
-        </div>
-      </div>
+        const elements = {
+            purchaseForm: document.getElementById("purchaseForm"),
+            purchaseEmail: document.getElementById("purchaseEmail"),
+            marketingOptIn: document.getElementById("marketingOptIn"),
+            payButton: document.getElementById("payButton"),
+            paymentStatus: document.getElementById("paymentStatus"),
 
-      <!-- Footer Bottom -->
-      <div class="footer-bottom">
-        <p class="copyright">© 2026 NextBranch Systems. All rights reserved.</p>
-        <div class="footer-legal">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Security</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+            requestCodeForm: document.getElementById("requestCodeForm"),
+            accessEmail: document.getElementById("accessEmail"),
+            requestCodeButton: document.getElementById("requestCodeButton"),
+            accessStatus: document.getElementById("accessStatus"),
 
-  <script src="main.js"></script>
+            verifyCodeForm: document.getElementById("verifyCodeForm"),
+            accessCode: document.getElementById("accessCode"),
+            verifyCodeButton: document.getElementById("verifyCodeButton"),
+
+            courseContent: document.getElementById("courseContent"),
+            videoWrapper: document.getElementById("videoWrapper"),
+            pdfButton: document.getElementById("pdfButton"),
+            returnToVideoButton: document.getElementById("returnToVideoButton")
+        };
+
+        let currentAccessEmail = "";
+        let accessRequestInProgress = false;
+        let paymentVerificationInProgress = false;
+
+        document.getElementById("currentYear").textContent =
+            String(new Date().getFullYear());
+
+        function normalizeEmail(value) {
+            return String(value || "").trim().toLowerCase();
+        }
+
+        function isValidEmail(value) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        }
+
+        function showStatus(element, message, type = "info") {
+            element.textContent = message;
+            element.className = "status-message visible " + type;
+        }
+
+        function clearStatus(element) {
+            element.textContent = "";
+            element.className = "status-message";
+        }
+
+        function setButtonLoading(button, loading, loadingText, originalText) {
+            button.disabled = loading;
+            button.textContent = loading ? loadingText : originalText;
+        }
+
+        async function postJSON(url, payload) {
+            let response;
+
+            try {
+                response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(payload),
+                    credentials: "same-origin",
+                    cache: "no-store"
+                });
+            } catch (error) {
+                throw new Error(
+                    "We couldn't connect to the server. Check your internet connection and try again."
+                );
+            }
+
+            let data;
+
+            try {
+                data = await response.json();
+            } catch (error) {
+                throw new Error(
+                    "The server returned an unexpected response. Please try again later."
+                );
+            }
+
+            if (!response.ok) {
+                const message =
+                    typeof data.error === "string"
+                        ? data.error
+                        : "The request could not be completed. Please try again.";
+
+                throw new Error(message);
+            }
+
+            return data;
+        }
+
+        function getPaymentReference() {
+            const params = new URLSearchParams(window.location.search);
+
+            // Paystack can return either "reference" or "trxref".
+            return (
+                params.get("reference") ||
+                params.get("trxref") ||
+                ""
+            ).trim();
+        }
+
+        function cleanPaymentQuery() {
+            const url = new URL(window.location.href);
+
+            url.searchParams.delete("reference");
+            url.searchParams.delete("trxref");
+
+            window.history.replaceState({}, document.title, url.toString());
+        }
+
+        function setAccessEmail(email) {
+            currentAccessEmail = normalizeEmail(email);
+            elements.accessEmail.value = currentAccessEmail;
+        }
+
+        function clearCourseContent() {
+            elements.courseContent.classList.remove("visible");
+            elements.videoWrapper.replaceChildren();
+            elements.pdfButton.removeAttribute("href");
+            elements.pdfButton.setAttribute("aria-disabled", "true");
+        }
+
+        function showCourseContent(data) {
+            /*
+              The access function must return:
+              {
+                "video_id": "YOUR_UNLISTED_YOUTUBE_VIDEO_ID",
+                "pdf_url": "A_VALID_SIGNED_SUPABASE_STORAGE_URL"
+              }
+      
+              Validate the video ID before building the iframe URL.
+              Never accept an arbitrary iframe URL from an untrusted response.
+            */
+
+            const videoId =
+                typeof data.video_id === "string" ? data.video_id.trim() : "";
+
+            const pdfUrl =
+                typeof data.pdf_url === "string" ? data.pdf_url.trim() : "";
+
+            if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) {
+                throw new Error(
+                    "Your access was verified, but the course video is not configured correctly. Please contact support."
+                );
+            }
+
+            let parsedPdfUrl;
+
+            try {
+                parsedPdfUrl = new URL(pdfUrl);
+            } catch (error) {
+                throw new Error(
+                    "Your access was verified, but the PDF link is not available. Please request a new access code or contact support."
+                );
+            }
+
+            if (
+                parsedPdfUrl.protocol !== "https:" ||
+                !parsedPdfUrl.hostname.endsWith("supabase.co")
+            ) {
+                throw new Error(
+                    "The PDF link could not be validated. Please contact support."
+                );
+            }
+
+            const iframe = document.createElement("iframe");
+
+            iframe.src =
+                "https://www.youtube-nocookie.com/embed/" +
+                encodeURIComponent(videoId);
+
+            iframe.title = "Build Your First Website Using AI — video tutorial";
+            iframe.loading = "lazy";
+            iframe.referrerPolicy = "strict-origin-when-cross-origin";
+            iframe.allow =
+                "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+            iframe.allowFullscreen = true;
+
+            elements.videoWrapper.replaceChildren(iframe);
+
+            elements.pdfButton.href = parsedPdfUrl.href;
+            elements.pdfButton.setAttribute("aria-disabled", "false");
+
+            elements.courseContent.classList.add("visible");
+            elements.courseContent.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+        /*
+          PAYMENT INITIALIZATION
+        */
+
+        elements.purchaseForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            clearStatus(elements.paymentStatus);
+
+            const email = normalizeEmail(elements.purchaseEmail.value);
+            const marketingOptIn = elements.marketingOptIn.checked;
+
+            if (!isValidEmail(email)) {
+                showStatus(
+                    elements.paymentStatus,
+                    "Please enter a valid email address.",
+                    "error"
+                );
+                elements.purchaseEmail.focus();
+                return;
+            }
+
+            setButtonLoading(
+                elements.payButton,
+                true,
+                "Preparing secure checkout…",
+                "Pay ₦1,500 securely →"
+            );
+
+            try {
+                const result = await postJSON(API.initializePayment, {
+                    email: email,
+                    marketing_opt_in: marketingOptIn
+                });
+
+                /*
+                  Expected successful backend response:
+                  {
+                    "authorization_url": "https://checkout.paystack.com/...",
+                    "reference": "NBA_..."
+                  }
+                */
+
+                let checkoutUrl;
+
+                try {
+                    checkoutUrl = new URL(result.authorization_url);
+                } catch (error) {
+                    throw new Error(
+                        "Secure checkout could not be opened. Please try again."
+                    );
+                }
+
+                if (
+                    checkoutUrl.protocol !== "https:" ||
+                    checkoutUrl.hostname !== "checkout.paystack.com"
+                ) {
+                    throw new Error(
+                        "The checkout address could not be validated. Please contact support."
+                    );
+                }
+
+                if (
+                    typeof result.reference !== "string" ||
+                    !/^NBA_[a-zA-Z0-9_-]+$/.test(result.reference)
+                ) {
+                    throw new Error(
+                        "The payment reference could not be validated. Please try again."
+                    );
+                }
+
+                showStatus(
+                    elements.paymentStatus,
+                    "Opening Paystack secure checkout…",
+                    "info"
+                );
+
+                window.location.assign(checkoutUrl.href);
+            } catch (error) {
+                showStatus(
+                    elements.paymentStatus,
+                    error.message || "We couldn't start your payment. Please try again.",
+                    "error"
+                );
+
+                setButtonLoading(
+                    elements.payButton,
+                    false,
+                    "",
+                    "Pay ₦1,500 securely →"
+                );
+            }
+        });
+
+        /*
+          PAYMENT RETURN VERIFICATION
+    
+          A URL reference alone never unlocks the course. The backend must
+          verify the transaction directly with Paystack and confirm the
+          amount, currency, status and product code.
+        */
+
+        async function verifyReturnedPayment() {
+            const reference = getPaymentReference();
+
+            if (!reference || paymentVerificationInProgress) {
+                return;
+            }
+
+            paymentVerificationInProgress = true;
+
+            showStatus(
+                elements.paymentStatus,
+                "Checking your payment with Paystack. Please wait…",
+                "info"
+            );
+
+            document.getElementById("purchase").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            try {
+                const result = await postJSON(API.verifyPayment, {
+                    reference: reference
+                });
+
+                /*
+                  Expected successful response:
+                  {
+                    "success": true,
+                    "email": "customer@example.com",
+                    "message": "Payment verified."
+                  }
+        
+                  Only the backend may decide whether payment is valid.
+                */
+
+                if (result.success !== true) {
+                    throw new Error(
+                        result.message ||
+                        "We couldn't confirm your payment. If you were charged, please contact support before paying again."
+                    );
+                }
+
+                const paidEmail = normalizeEmail(result.email);
+
+                if (!isValidEmail(paidEmail)) {
+                    throw new Error(
+                        "Payment was verified, but the purchase email could not be confirmed. Please contact support."
+                    );
+                }
+
+                setAccessEmail(paidEmail);
+
+                showStatus(
+                    elements.paymentStatus,
+                    "Payment verified successfully. Your purchase is linked to " +
+                    paidEmail +
+                    ". Request an access code below to open your materials.",
+                    "success"
+                );
+
+                showStatus(
+                    elements.accessStatus,
+                    "Your purchase email has been filled in. Request a one-time code to access your guide and video.",
+                    "info"
+                );
+
+                document.getElementById("access").scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            } catch (error) {
+                showStatus(
+                    elements.paymentStatus,
+                    error.message ||
+                    "We couldn't verify your payment. If you were charged, contact support before trying to pay again.",
+                    "error"
+                );
+            } finally {
+                cleanPaymentQuery();
+                paymentVerificationInProgress = false;
+            }
+        }
+
+        /*
+          REQUEST ONE-TIME ACCESS CODE
+        */
+
+        elements.requestCodeForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            if (accessRequestInProgress) {
+                return;
+            }
+
+            clearStatus(elements.accessStatus);
+            clearCourseContent();
+
+            const email = normalizeEmail(elements.accessEmail.value);
+
+            if (!isValidEmail(email)) {
+                showStatus(
+                    elements.accessStatus,
+                    "Please enter a valid email address.",
+                    "error"
+                );
+                elements.accessEmail.focus();
+                return;
+            }
+
+            accessRequestInProgress = true;
+            currentAccessEmail = email;
+
+            setButtonLoading(
+                elements.requestCodeButton,
+                true,
+                "Requesting code…",
+                "Send access code"
+            );
+
+            try {
+                const result = await postJSON(API.requestAccess, {
+                    email: email
+                });
+
+                /*
+                  For privacy, the backend should return a generic message
+                  whether or not a purchase exists for the email address.
+                */
+
+                showStatus(
+                    elements.accessStatus,
+                    result.message ||
+                    "If this email matches a completed purchase, an access code will be sent. Check your inbox and spam folder.",
+                    "info"
+                );
+
+                elements.verifyCodeForm.classList.add("visible");
+                elements.accessCode.value = "";
+                elements.accessCode.focus();
+            } catch (error) {
+                showStatus(
+                    elements.accessStatus,
+                    error.message ||
+                    "We couldn't process your request. Please wait a moment and try again.",
+                    "error"
+                );
+            } finally {
+                accessRequestInProgress = false;
+
+                setButtonLoading(
+                    elements.requestCodeButton,
+                    false,
+                    "",
+                    "Send access code"
+                );
+            }
+        });
+
+        /*
+          VERIFY ACCESS CODE
+        */
+
+        elements.verifyCodeForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            clearStatus(elements.accessStatus);
+            clearCourseContent();
+
+            const email = normalizeEmail(
+                currentAccessEmail || elements.accessEmail.value
+            );
+
+            const code = elements.accessCode.value.trim();
+
+            if (!isValidEmail(email)) {
+                showStatus(
+                    elements.accessStatus,
+                    "Enter the email address used for your purchase.",
+                    "error"
+                );
+                return;
+            }
+
+            if (!/^[0-9]{6}$/.test(code)) {
+                showStatus(
+                    elements.accessStatus,
+                    "Enter the six-digit code sent to your email.",
+                    "error"
+                );
+                elements.accessCode.focus();
+                return;
+            }
+
+            setButtonLoading(
+                elements.verifyCodeButton,
+                true,
+                "Verifying code…",
+                "Verify and access materials"
+            );
+
+            try {
+                const result = await postJSON(API.verifyAccess, {
+                    email: email,
+                    code: code
+                });
+
+                /*
+                  Expected successful response:
+                  {
+                    "success": true,
+                    "video_id": "YOUR_11_CHARACTER_VIDEO_ID",
+                    "pdf_url": "https://YOUR_PROJECT.supabase.co/storage/v1/object/sign/..."
+                  }
+        
+                  The backend must verify the code and purchase before
+                  returning the signed URL or video ID.
+                */
+
+                if (result.success !== true) {
+                    throw new Error(
+                        result.message || "That code could not be verified. Please try again."
+                    );
+                }
+
+                showCourseContent(result);
+
+                showStatus(
+                    elements.accessStatus,
+                    "Verification successful. Your course materials are ready below.",
+                    "success"
+                );
+            } catch (error) {
+                showStatus(
+                    elements.accessStatus,
+                    error.message ||
+                    "We couldn't verify that code. Check it and try again, or request a new code.",
+                    "error"
+                );
+            } finally {
+                setButtonLoading(
+                    elements.verifyCodeButton,
+                    false,
+                    "",
+                    "Verify and access materials"
+                );
+            }
+        });
+
+        /*
+          Small usability helpers.
+        */
+
+        elements.accessEmail.addEventListener("input", function () {
+            currentAccessEmail = normalizeEmail(elements.accessEmail.value);
+        });
+
+        elements.accessCode.addEventListener("input", function () {
+            elements.accessCode.value = elements.accessCode.value
+                .replace(/\D/g, "")
+                .slice(0, 6);
+        });
+
+        elements.returnToVideoButton.addEventListener("click", function () {
+            elements.videoWrapper.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        });
+
+        elements.pdfButton.addEventListener("click", function (event) {
+            if (!elements.pdfButton.href ||
+                elements.pdfButton.getAttribute("aria-disabled") === "true") {
+                event.preventDefault();
+
+                showStatus(
+                    elements.accessStatus,
+                    "Verify your purchase access before opening the PDF.",
+                    "info"
+                );
+            }
+        });
+
+        /*
+          If Paystack redirects back with a reference, verify it with
+          the backend before displaying a successful payment message.
+        */
+        verifyReturnedPayment();
+    </script>
 </body>
 
 </html>
