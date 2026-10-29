@@ -996,6 +996,172 @@
             border: 0;
         }
 
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 680px;
+            padding: 90px 8%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 60px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #6b55d9;
+            margin-bottom: 24px;
+        }
+
+        .academy-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 5vw, 68px);
+            line-height: 1.08;
+            letter-spacing: -2.5px;
+            margin: 0 0 24px;
+        }
+
+        .hero-subtitle {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #666;
+            max-width: 480px;
+        }
+
+        .hero-price {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 28px 0;
+        }
+
+        .hero-price strong {
+            font-size: 34px;
+            font-weight: 800;
+        }
+
+        .hero-price span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 17px 28px;
+            background: #171717;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero-note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 16px;
+        }
+
+        /* GUIDE COVER */
+        .hero-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .book-mockup {
+            width: min(100%, 390px);
+            transform: rotate(3deg);
+            filter: drop-shadow(20px 25px 25px rgba(0, 0, 0, 0.18));
+            transition: transform 0.3s ease;
+        }
+
+        .book-mockup:hover {
+            transform: rotate(0deg) translateY(-8px);
+        }
+
+        .book-mockup img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .visual-caption {
+            display: flex;
+            justify-content: space-between;
+            width: min(100%, 390px);
+            margin-top: 30px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #888;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 65px 7%;
+                gap: 55px;
+                text-align: center;
+            }
+
+            .hero-content {
+                margin: auto;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+                letter-spacing: -1.5px;
+            }
+
+            .hero-description {
+                margin: auto;
+                font-size: 15px;
+            }
+
+            .hero-price {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                max-width: 350px;
+                margin: auto;
+            }
+
+            .book-mockup {
+                width: 85%;
+            }
+        }
+
+
         @media (max-width: 900px) {
             .hero-grid {
                 grid-template-columns: 1fr 0.85fr;
@@ -1204,89 +1370,47 @@
     </header>
 
     <main>
-        <section class="hero" id="home">
-            <div class="container hero-grid">
-                <div>
-                    <div class="eyebrow">
-                        <span class="eyebrow-dot"></span>
-                        For complete beginners
-                    </div>
 
-                    <h1>
-                        Build Your First Website
-                        <span class="highlight">Using AI.</span>
-                    </h1>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="eyebrow">BEGINNER'S GUIDE PDF + VIDEO</span>
 
-                    <p class="hero-description">
-                        You don't need to be an experienced programmer to start building
-                        websites. Learn how to use AI tools to create your first website
-                        step by step, even if you're starting from zero.
-                    </p>
+                <p class="academy-name">NextBranch Academy</p>
 
-                    <ul class="hero-points">
-                        <li>
-                            <span class="check-icon" aria-hidden="true">✓</span>
-                            No previous coding experience required.
-                        </li>
-                        <li>
-                            <span class="check-icon" aria-hidden="true">✓</span>
-                            Learn with a beginner-friendly PDF and video tutorial.
-                        </li>
-                        <li>
-                            <span class="check-icon" aria-hidden="true">✓</span>
-                            Pay once. Get access to the learning materials.
-                        </li>
-                    </ul>
+                <h1>Build Your First Website Using AI</h1>
 
-                    <div class="hero-actions">
-                        <a class="button" href="#purchase">
-                            Start learning <span aria-hidden="true">→</span>
-                        </a>
+                <p class="hero-subtitle">
+                    START FROM ZERO 01 / YOUR FIRST WEBSITE
+                </p>
 
-                        <div class="price-note">
-                            One-time payment
-                            <strong>₦1,500</strong>
-                        </div>
-                    </div>
+                <p class="hero-description">
+                    Your first practical project. Learn how to build a website
+                    from scratch using AI, even if you've never written code before.
+                </p>
+
+                <div class="hero-price">
+                    <strong>₦1,500</strong>
+                    <span>One-time purchase</span>
                 </div>
 
-                <div class="hero-visual" aria-label="Illustration of the website-building guide">
-                    <div class="mockup">
-                        <div class="mockup-top">
-                            <span>Beginner's guide</span>
-                            <span class="mockup-badge">PDF + Video</span>
-                        </div>
+                <a href="#checkout" class="hero-button">
+                    Get the Guide Now →
+                </a>
 
-                        <div class="book-cover">
-                            <div class="cover-label">NextBranch Academy</div>
+                <p class="hero-note">PDF guide + practical video tutorial</p>
+            </div>
 
-                            <div>
-                                <h2>Build Your First Website Using AI</h2>
-                                <div class="cover-lines" aria-hidden="true">
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </div>
-
-                            <div class="cover-footer">
-                                <span>START FROM ZERO</span>
-                                <span>01 / YOUR FIRST WEBSITE</span>
-                            </div>
-                        </div>
-
-                        <div class="mockup-bottom">
-                            <strong>Your first practical project</strong>
-                            <span>Beginner friendly</span>
-                        </div>
-                    </div>
-
-                    <div class="floating-note">
-                        <strong>₦1,500</strong>
-                        One-time purchase
-                    </div>
+            <div class="hero-visual">
+                <div class="book-mockup">
+                    <img src="images/cover.jpg" alt="Build Your First Website Using AI guide cover" />
+                </div>
+                <div class="visual-caption">
+                    <span>YOUR FIRST WEBSITE</span>
+                    <span>START FROM ZERO 01</span>
                 </div>
             </div>
         </section>
+
 
         <section class="trust-strip" aria-label="Course highlights">
             <div class="container trust-items">
