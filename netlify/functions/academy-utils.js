@@ -47,13 +47,13 @@ export async function supabaseRequest(path, options = {}) {
         }
     );
 
-    const text = await response.text();
+    const responseText = await response.text();
     let data = null;
 
     try {
-        data = text ? JSON.parse(text) : null;
+        data = responseText ? JSON.parse(responseText) : null;
     } catch {
-        data = text;
+        data = responseText;
     }
 
     if (!response.ok) {
@@ -64,7 +64,12 @@ export async function supabaseRequest(path, options = {}) {
     return data;
 }
 
-export async function sendEmail({ to, subject, html }) {
+export async function sendEmail({
+    to,
+    subject,
+    html,
+    idempotencyKey
+}) {
     const apiKey = process.env.RESEND_API_KEY;
     const from = process.env.ACADEMY_FROM_EMAIL;
 
@@ -72,12 +77,18 @@ export async function sendEmail({ to, subject, html }) {
         throw new Error("Email environment variables are missing.");
     }
 
+    const headers = {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json"
+    };
+
+    if (idempotencyKey) {
+        headers["Idempotency-Key"] = idempotencyKey;
+    }
+
     const response = await fetch("https://api.resend.com/emails", {
         method: "POST",
-        headers: {
-            Authorization: `Bearer ${apiKey}`,
-            "Content-Type": "application/json"
-        },
+        headers,
         body: JSON.stringify({ from, to, subject, html })
     });
 
