@@ -178,12 +178,24 @@ export async function handler(event) {
             email,
             message: "Your payment has been verified."
         });
+    
     } catch (error) {
-        console.error("Verify academy payment error:", error);
+        const errorId = crypto.randomUUID();
+
+        console.error(`[Academy payment ${errorId}]`, {
+            message: error instanceof Error
+                ? error.message
+                : String(error),
+            name: error instanceof Error
+                ? error.name
+                : "UnknownError"
+        });
 
         return json(500, {
             success: false,
-            error: "Payment verification is temporarily unavailable."
+            error: "Payment verification is temporarily unavailable.",
+            error_id: errorId
         });
     }
 }
+
