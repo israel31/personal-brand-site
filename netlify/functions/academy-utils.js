@@ -198,9 +198,12 @@ export async function sendTikTokEvent({
         user.ttp = String(ttp);
     }
 
+    const testEventCode = process.env.TIKTOK_TEST_EVENT_CODE;
+
     const payload = {
         event_source: "web",
         event_source_id: pixelId,
+        ...(testEventCode ? { test_event_code: testEventCode } : {}),
         data: [
             {
                 event,
