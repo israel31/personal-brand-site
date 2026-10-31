@@ -214,8 +214,14 @@ export async function sendTikTokEvent({
                     currency: "NGN",
                     value,
                     content_type: "product",
-                    content_id: "nextbranch_academy_first_website_ai",
-                    content_name: "Build Your First Website Using AI"
+                    contents: [
+                        {
+                            content_id: "nextbranch_academy_first_website_ai",
+                            content_name: "Build Your First Website Using AI",
+                            quantity: 1,
+                            price: value
+                        }
+                    ]
                 },
                 page: {
                     url: pageUrl,
