@@ -133,3 +133,174 @@ export function methodNotAllowed(event, expected = "POST") {
 
     return null;
 }
+
+/*
+ * TIKTOK EVENTS API
+ *
+ * Server-side event sender.
+ * The access token must remain in Netlify environment variables.
+ */
+
+export async function sendTikTokEvent({
+    event,
+    eventId,
+    email = "",
+    pageUrl = "https://nextbranch.com.ng/academy/",
+    referrer = "",
+    ip = "",
+    userAgent = "",
+    ttclid = "",
+    ttp = "",
+    value = 1500
+}) {
+    const pixelId = process.env.TIKTOK_PIXEL_ID;
+    const accessToken = process.env.TIKTOK_ACCESS_TOKEN;
+
+    if (!pixelId || !accessToken) {
+        console.warn("TikTok is not configured. Event skipped:", event);
+        return false;
+    }
+
+    if (!event || !eventId) {
+        console.warn("TikTok event missing event name or event ID.");
+        return false;
+    }
+
+    const user = {};
+
+    // TikTok requires SHA-256 hashed email.
+    if (email) {
+        const normalizedEmail = String(email).trim().toLowerCase();
+
+        const digest = await crypto.subtle.digest(
+            "SHA-256",
+            new TextEncoder().encode(normalizedEmail)
+        );
+
+        user.email = Array.from(new Uint8Array(digest))
+            .map(byte => byte.toString(16).padStart(2, "0"))
+            .join("");
+    }
+
+    if (ip) {
+        user.ip = String(ip).split(",")[0].trim();
+    }
+
+    if (userAgent) {
+        user.user_agent = userAgent;
+    }
+
+    if (ttclid) {
+        user.ttclid = String(ttclid);
+    }
+
+    if (ttp) {
+        user.ttp = String(ttp);
+    }
+
+    const payload = {
+        event_source: "web",
+        event_source_id: pixelId,
+        data: [
+            {
+                event,
+                event_time: Math.floor(Date.now() / 1000),
+                event_id: eventId,
+                user,
+                properties: {
+                    currency: "NGN",
+                    value,
+                    content_type: "product",
+                    content_id: "nextbranch_academy_first_website_ai",
+                    content_name: "Build Your First Website Using AI"
+                },
+                page: {
+                    url: pageUrl,
+                    ...(referrer ? { referrer } : {})
+                }
+            }
+        ]
+    };
+
+    try {
+        const response = await fetch(
+            "https://business-api.tiktok.com/open_api/v1.3/event/track/",
+            {
+                method: "POST",
+                headers: {
+                    "Access-Token": accessToken,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            }
+        );
+
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok || result.code !== 0) {
+            console.error(
+                "TikTok Events API rejected event:",
+                event,
+                response.status,
+                result
+            );
+
+            return false;
+        }
+
+        console.info("TikTok event accepted:", event, eventId);
+
+        return true;
+
+    } catch (error) {
+        console.error("TikTok Events API request failed:", event, error);
+        return false;
+    }
+}
+
+/*
+ * Extract tracking information from the Netlify request.
+ */
+
+export function getTikTokRequestData(event, body = {}) {
+    const headers = event.headers || {};
+
+    const getHeader = name => {
+        const key = Object.keys(headers).find(
+            item => item.toLowerCase() === name.toLowerCase()
+        );
+
+        return key ? headers[key] : "";
+    };
+
+    const pageUrl =
+        typeof body.page_url === "string" &&
+            body.page_url.startsWith("https://nextbranch.com.ng/")
+            ? body.page_url
+            : "https://nextbranch.com.ng/academy/";
+
+    const referrer =
+        typeof body.referrer === "string" &&
+            body.referrer.startsWith("https://")
+            ? body.referrer
+            : "";
+
+    return {
+        ip: getHeader("x-nf-client-connection-ip") ||
+            getHeader("x-forwarded-for") ||
+            "",
+
+        userAgent: getHeader("user-agent") || "",
+
+        ttclid: typeof body.ttclid === "string"
+            ? body.ttclid
+            : "",
+
+        ttp: typeof body.ttp === "string"
+            ? body.ttp
+            : "",
+
+        pageUrl,
+        referrer
+    };
+}
