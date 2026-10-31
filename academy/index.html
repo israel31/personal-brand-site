@@ -10,6 +10,68 @@
 
     <title>Build Your First Website Using AI | NextBranch Academy</title>
 
+    <!-- TikTok Pixel -->
+    <script>
+        !function (w, d, t) {
+            w.TiktokAnalyticsObject = t;
+
+            var ttq = w[t] = w[t] || [];
+
+            ttq.methods = [
+                "page", "track", "identify", "instances", "debug",
+                "on", "off", "once", "ready", "alias", "group",
+                "enableCookie", "disableCookie"
+            ];
+
+            ttq.setAndDefer = function (t, e) {
+                t[e] = function () {
+                    t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+                };
+            };
+
+            for (var i = 0; i < ttq.methods.length; i++) {
+                ttq.setAndDefer(ttq, ttq.methods[i]);
+            }
+
+            ttq.instance = function (t) {
+                var e = ttq._i[t] || [];
+
+                for (var n = 0; n < ttq.methods.length; n++) {
+                    ttq.setAndDefer(e, ttq.methods[n]);
+                }
+
+                return e;
+            };
+
+            ttq.load = function (e, n) {
+                var r = "https://analytics.tiktok.com/i18n/pixel/events.js";
+
+                ttq._i = ttq._i || {};
+                ttq._i[e] = [];
+                ttq._i[e]._u = r;
+
+                ttq._t = ttq._t || {};
+                ttq._t[e] = +new Date;
+
+                ttq._o = ttq._o || {};
+                ttq._o[e] = n || {};
+
+                var s = d.createElement("script");
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = r + "?sdkid=" + e + "&lib=" + t;
+
+                var x = d.getElementsByTagName("script")[0];
+                x.parentNode.insertBefore(s, x);
+            };
+
+            ttq.load("DBIHTVJC77UASCMGTU70");
+            ttq.page();
+
+        }(window, document, "ttq");
+    </script>
+    <!-- End TikTok Pixel -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -1402,7 +1464,7 @@
 
             <div class="hero-visual">
                 <div class="book-mockup">
-                    <img src="../images/cover.jpg" alt="Build Your First Website Using AI guide cover" />
+                    <img src="images/1.jpeg" alt="Build Your First Website Using AI guide cover" />
                 </div>
                 <div class="visual-caption">
                     <span>YOUR FIRST WEBSITE</span>
@@ -1802,6 +1864,104 @@
             verifyAccess: "/.netlify/functions/verify-academy-access"
         };
 
+
+        const TIKTOK_PRODUCT = {
+            id: "nextbranch_academy_first_website_ai",
+            name: "Build Your First Website Using AI",
+            value: 1500,
+            currency: "NGN"
+        };
+
+        function getTikTokCookie(name) {
+            const prefix = name + "=";
+
+            const item = document.cookie
+                .split("; ")
+                .find(row => row.startsWith(prefix));
+
+            return item
+                ? decodeURIComponent(item.slice(prefix.length))
+                : "";
+        }
+
+        function getTikTokClickId() {
+            const params = new URLSearchParams(window.location.search);
+            const current = params.get("ttclid");
+
+            if (current) {
+                try {
+                    localStorage.setItem("nb_tiktok_ttclid", current);
+                } catch (_) { }
+
+                return current;
+            }
+
+            try {
+                return localStorage.getItem("nb_tiktok_ttclid") || "";
+            } catch (_) {
+                return "";
+            }
+        }
+
+        function createTikTokEventId(prefix) {
+            const id = window.crypto && crypto.randomUUID
+                ? crypto.randomUUID()
+                : String(Date.now()) + "_" + Math.random().toString(36).slice(2);
+
+            return prefix + "_" + id.replace(/[^A-Za-z0-9_-]/g, "");
+        }
+
+        function trackTikTokPixel(eventName, eventId) {
+            if (window.ttq && typeof window.ttq.track === "function") {
+                window.ttq.track(
+                    eventName,
+                    {
+                        value: TIKTOK_PRODUCT.value,
+                        currency: TIKTOK_PRODUCT.currency,
+                        content_type: "product",
+                        content_id: TIKTOK_PRODUCT.id,
+                        content_name: TIKTOK_PRODUCT.name
+                    },
+                    {
+                        event_id: eventId
+                    }
+                );
+            }
+        }
+
+        function getTikTokTrackingContext(eventId) {
+            return {
+                event_id: eventId,
+                page_url: window.location.href,
+                referrer: document.referrer || "",
+                ttclid: getTikTokClickId(),
+                ttp: getTikTokCookie("_ttp")
+            };
+        }
+
+        /*
+         * ViewContent: send through both Pixel and Events API.
+         */
+
+        (function trackAcademyView() {
+            const eventId = createTikTokEventId("view");
+
+            trackTikTokPixel("ViewContent", eventId);
+
+            fetch("/.netlify/functions/track-academy-view", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(
+                    getTikTokTrackingContext(eventId)
+                ),
+                credentials: "same-origin",
+                keepalive: true
+            }).catch(() => { });
+        })();
+
+
         const PRODUCT = {
             price: 1500,
             currency: "NGN"
@@ -2031,9 +2191,16 @@
             );
 
             try {
+                const checkoutEventId = createTikTokEventId("checkout");
+
+                const trackingContext = getTikTokTrackingContext(
+                    checkoutEventId
+                );
+
                 const result = await postJSON(API.initializePayment, {
                     email: email,
-                    marketing_opt_in: marketingOptIn
+                    marketing_opt_in: marketingOptIn,
+                    ...trackingContext
                 });
 
                 /*
@@ -2076,6 +2243,11 @@
                     elements.paymentStatus,
                     "Opening Paystack secure checkout…",
                     "info"
+                );
+
+                trackTikTokPixel(
+                    "InitiateCheckout",
+                    checkoutEventId
                 );
 
                 window.location.assign(checkoutUrl.href);
@@ -2124,8 +2296,11 @@
             });
 
             try {
+                const purchaseEventId = "purchase_" + reference;
+
                 const result = await postJSON(API.verifyPayment, {
-                    reference: reference
+                    reference: reference,
+                    ...getTikTokTrackingContext(purchaseEventId)
                 });
 
                 /*
@@ -2154,7 +2329,10 @@
                     );
                 }
 
-                setAccessEmail(paidEmail);
+                trackTikTokPixel(
+                    "Purchase",
+                    purchaseEventId
+                );
 
                 showStatus(
                     elements.paymentStatus,
