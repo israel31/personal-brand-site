@@ -5,7 +5,9 @@ import {
     supabaseRequest,
     sendEmail,
     escapeHtml,
-    methodNotAllowed
+    methodNotAllowed,
+    sendTikTokEvent,
+    getTikTokRequestData
 } from "./academy-utils.js";
 
 const PRODUCT_CODE = "nextbranch_academy_first_website_ai";
@@ -17,7 +19,8 @@ export async function handler(event) {
 
     try {
         const secret = process.env.PAYSTACK_SECRET_KEY;
-        const { reference } = readBody(event);
+        const body = readBody(event);
+        const { reference } = body;
 
         if (!secret) {
             throw new Error("PAYSTACK_SECRET_KEY is missing.");
@@ -52,6 +55,7 @@ export async function handler(event) {
         }
 
         const transaction = result.data;
+
         const email = String(
             transaction.customer?.email || ""
         ).trim().toLowerCase();
@@ -70,7 +74,10 @@ export async function handler(event) {
             });
         }
 
-        // Check whether this transaction has already been recorded.
+        /*
+         * Check whether this transaction has already been recorded.
+         */
+
         const existing = await supabaseRequest(
             `academy_purchases?reference=eq.${encodeURIComponent(reference)}&select=reference,email,amount,currency,status&limit=1`
         );
@@ -90,95 +97,114 @@ export async function handler(event) {
                 });
             }
 
-            return json(200, {
-                success: true,
-                verified: true,
-                email: purchase.email,
-                message: "Your payment has been verified."
+        } else {
+            /*
+             * Save the verified purchase before sending email
+             * or tracking the purchase.
+             */
+
+            await supabaseRequest("academy_purchases", {
+                method: "POST",
+                headers: {
+                    Prefer: "return=minimal"
+                },
+                body: JSON.stringify({
+                    reference,
+                    email,
+                    product_code: PRODUCT_CODE,
+                    amount: 150000,
+                    currency: "NGN",
+                    status: "paid",
+                    paid_at: transaction.paid_at || new Date().toISOString()
+                })
             });
-        }
 
-        // Save the verified purchase before attempting to send email.
-        await supabaseRequest("academy_purchases", {
-            method: "POST",
-            headers: {
-                Prefer: "return=minimal"
-            },
-            body: JSON.stringify({
-                reference,
-                email,
-                product_code: PRODUCT_CODE,
-                amount: 150000,
-                currency: "NGN",
-                status: "paid",
-                paid_at: transaction.paid_at || new Date().toISOString()
-            })
-        });
+            /*
+             * Confirmation email is best-effort.
+             */
 
-        // Email is best-effort: a delivery failure must not invalidate
-        // a payment that Paystack has already confirmed.
-        try {
-            await sendEmail({
-                to: email,
-                subject: "Payment confirmed — NextBranch Academy",
-                idempotencyKey: `academy-purchase-${reference}`,
-                html: `
-                    <div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#172335;line-height:1.7">
-                        <h1 style="color:#2c73b9">Payment confirmed!</h1>
+            try {
+                await sendEmail({
+                    to: email,
+                    subject: "Payment confirmed — NextBranch Academy",
+                    idempotencyKey: `academy-purchase-${reference}`,
+                    html: `
+                        <div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#172335;line-height:1.7">
+                            <h1 style="color:#2c73b9">Payment confirmed!</h1>
 
-                        <p>Hello,</p>
+                            <p>Hello,</p>
 
-                        <p>
-                            Thank you for purchasing
-                            <strong>Building Your First Website Using AI</strong>
-                            from NextBranch Academy.
-                        </p>
+                            <p>
+                                Thank you for purchasing
+                                <strong>Building Your First Website Using AI</strong>
+                                from NextBranch Academy.
+                            </p>
 
-                        <div style="padding:18px;background:#f2f7fd;border-radius:12px">
-                            <p style="margin:0"><strong>Product:</strong> Build Your First Website Using AI</p>
-                            <p style="margin:8px 0 0"><strong>Amount paid:</strong> ₦1,500</p>
-                            <p style="margin:8px 0 0;overflow-wrap:anywhere"><strong>Reference:</strong> ${escapeHtml(reference)}</p>
+                            <div style="padding:18px;background:#f2f7fd;border-radius:12px">
+                                <p style="margin:0"><strong>Product:</strong> Build Your First Website Using AI</p>
+                                <p style="margin:8px 0 0"><strong>Amount paid:</strong> ₦1,500</p>
+                                <p style="margin:8px 0 0;overflow-wrap:anywhere"><strong>Reference:</strong> ${escapeHtml(reference)}</p>
+                            </div>
+
+                            <p>
+                                To access your course PDF and video, open the Academy
+                                page using the button below. Enter the email address
+                                you used for payment, request an access code, and
+                                follow the instructions on the page.
+                            </p>
+
+                            <p style="margin:28px 0">
+                                <a href="${COURSE_URL}" style="display:inline-block;background:#2c73b9;color:#ffffff;text-decoration:none;padding:13px 22px;border-radius:8px;font-weight:bold">
+                                    Access your course
+                                </a>
+                            </p>
+
+                            <p>
+                                Your one-time access code will be sent separately
+                                when you request it. If you have already requested
+                                one, check your inbox.
+                            </p>
+
+                            <p>Thank you for learning with us.</p>
+                            <p><strong>NextBranch Academy</strong></p>
                         </div>
+                    `
+                });
 
-                        <p>
-                            To access your course PDF and video, open the Academy
-                            page using the button below. Enter the email address
-                            you used for payment, request an access code, and
-                            follow the instructions on the page.
-                        </p>
-
-                        <p style="margin:28px 0">
-                            <a href="${COURSE_URL}" style="display:inline-block;background:#2c73b9;color:#ffffff;text-decoration:none;padding:13px 22px;border-radius:8px;font-weight:bold">
-                                Access your course
-                            </a>
-                        </p>
-
-                        <p>
-                            Your one-time access code will be sent separately
-                            when you request it. If you have already requested
-                            one, check your inbox.
-                        </p>
-
-                        <p>Thank you for learning with us.</p>
-                        <p><strong>NextBranch Academy</strong></p>
-                    </div>
-                `
-            });
-        } catch (emailError) {
-            console.error(
-                "Purchase verified, but confirmation email failed:",
-                reference,
-                emailError
-            );
+            } catch (emailError) {
+                console.error(
+                    "Purchase verified, but confirmation email failed:",
+                    reference,
+                    emailError
+                );
+            }
         }
+
+        /*
+         * TikTok Purchase.
+         *
+         * This stable ID is also used by the browser Pixel.
+         * Repeated verification requests therefore share one event ID.
+         */
+
+        const tracking = getTikTokRequestData(event, body);
+
+        await sendTikTokEvent({
+            event: "Purchase",
+            eventId: "purchase_" + reference,
+            email,
+            ...tracking,
+            value: 1500
+        });
 
         return json(200, {
             success: true,
             verified: true,
             email,
+            event_id: "purchase_" + reference,
             message: "Your payment has been verified."
         });
-    
+
     } catch (error) {
         const errorId = crypto.randomUUID();
 
@@ -186,6 +212,7 @@ export async function handler(event) {
             message: error instanceof Error
                 ? error.message
                 : String(error),
+
             name: error instanceof Error
                 ? error.name
                 : "UnknownError"
@@ -198,4 +225,3 @@ export async function handler(event) {
         });
     }
 }
-

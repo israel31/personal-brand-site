@@ -32,7 +32,6 @@ export async function handler(event) {
         const pdfPath = process.env.ACADEMY_PDF_PATH || "first-website-ai.pdf";
         const videoId = process.env.ACADEMY_VIDEO_ID;
 
-        
         if (
             !baseUrl ||
             !serviceKey ||
